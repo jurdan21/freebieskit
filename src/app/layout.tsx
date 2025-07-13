@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from 'next/font/google';
 import "./globals.css";
 import Footer from "@/components/Footer";
+// import Head from "next/head"; // Dihapus karena tidak digunakan
 
 const inter = Inter({ 
   subsets: ['latin'], 
@@ -11,7 +12,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Free UI Kits, Mockups, Illustrations, and More",
-  description: "Freebieskit is your all in one library of 100% free design resources curated from trusted platforms.",
+  
 };
 
 export default function RootLayout({
@@ -21,6 +22,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={inter.variable}>
+      <head>
+        <link rel="icon" href="https://res.cloudinary.com/doihq9rxd/image/upload/v1752429202/Favicon_o1uqdc.svg" type="image/svg+xml" />
+        <link rel="shortcut icon" href="https://res.cloudinary.com/doihq9rxd/image/upload/v1752429202/Favicon_o1uqdc.svg" type="image/svg+xml" />
+      </head>
       <body className={`${inter.className} antialiased`}>
         {children}
         <Footer />
