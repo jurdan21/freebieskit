@@ -3,24 +3,63 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Color Tokens */
+  --color-black-base: #0A0A0A;
+  --color-black-light: #727272;
+  --color-black-lighter: #A6A6A6;
+  --color-grey-base: #F2F2F2;
+  --color-white: #ffffff;
+
+  /* Typography Tokens - Inter Font */
+  --font-inter-h1: 72px / 84px var(--font-inter);
+  --font-inter-h2: 52px / 64px var(--font-inter);
+  --font-inter-h3: 48px / 56px var(--font-inter);
+  --font-inter-h4: 28px / 40px var(--font-inter);
+  --font-inter-h5: 24px / 36px var(--font-inter);
+  --font-inter-h6: 20px / 32px var(--font-inter);
+  --font-inter-description: 18px / 28px var(--font-inter);
+  --font-inter-caption: 14px / 24px var(--font-inter);
 }
 
+/*
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
 }
+*/
 
+/*
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
 }
+*/
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), sans-serif;
+}
+
+/* Hide tab indicator bar under resource tabs */
+.resource-tab-indicator, .resource-tab-indicator-bar, .tab-indicator, .tab-bar, .tab-underline, .tab-divider, .tab-shadow, .tab-border, .tab-after, .tab-before {
+  display: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Hide scrollbar track (gray bar) under resource tabs */
+.resource-tab-container::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+.resource-tab-container::-webkit-scrollbar {
+  height: 0px !important;
+  background: transparent !important;
+}
+.resource-tab-container {
+  scrollbar-color: transparent transparent !important;
+  scrollbar-width: none !important;
 }
