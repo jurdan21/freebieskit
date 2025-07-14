@@ -2,17 +2,17 @@ import React from "react";
 
 export default function Information() {
   return (
-    <section className="max-w-2xl mx-auto px-4 py-16 text-black font-inter">
+    <section className="max-w-2xl mx-auto px-4 sm:px-6 md:px-8 py-10 sm:py-14 md:py-16 text-black font-inter">
       <h1 className="text-3xl md:text-4xl font-semibold mb-8">Information</h1>
-      <section className="mb-12">
+      <section className="mb-8 md:mb-12">
         <h2 className="text-xl font-medium mb-2">About</h2>
-        <p className="mb-4 text-base leading-relaxed">
+        <p className="mb-4 text-sm sm:text-base leading-relaxed">
           Freebieskit.com is a curated platform that helps creators discover and download over 1,000 free design assets including UI kits, mockups, fonts, icons, illustrations, and more all in one place.
         </p>
         <p className="mb-4 text-base leading-relaxed">
           We started Freebieskit with a simple question:
         </p>
-        <blockquote className="bg-gray-100 rounded-lg px-6 py-4 mb-4 text-base italic border-l-4 border-gray-300">
+        <blockquote className="bg-gray-100 rounded-lg px-4 sm:px-6 py-3 sm:py-4 mb-4 text-sm sm:text-base italic border-l-4 border-gray-300">
           “Why does finding good free design assets still feel like a scavenger hunt?”
         </blockquote>
         <p className="mb-4 text-base leading-relaxed">
@@ -20,7 +20,7 @@ export default function Information() {
           Freebieskit is a clean, fast, and curated library of high-quality, free design resources gathered from platforms we trust like Figma, Dribbble, Behance, GitHub, and the design community itself.
         </p>
         <p className="mb-4 text-base leading-relaxed">What you&apos;ll find here:</p>
-        <ul className="list-disc pl-6 mb-4 text-base leading-relaxed">
+        <ul className="list-disc pl-5 sm:pl-6 mb-4 text-sm sm:text-base leading-relaxed">
           <li>UI Kits for websites, dashboards, and mobile apps</li>
           <li>Device Mockups for showcasing your work</li>
           <li>Illustrations, icons, and 3D assets to elevate your visuals</li>
@@ -31,7 +31,7 @@ export default function Information() {
           All assets are clearly categorized, properly licensed, and ready to use — no login, no spam, no confusion.
         </p>
         <p className="mb-4 text-base leading-relaxed">We built Freebieskit to:</p>
-        <ul className="list-disc pl-6 mb-4 text-base leading-relaxed">
+        <ul className="list-disc pl-5 sm:pl-6 mb-4 text-sm sm:text-base leading-relaxed">
           <li>Save creators time</li>
           <li>Keep great resources free</li>
           <li>Promote clean curation over clutter</li>
@@ -42,7 +42,7 @@ export default function Information() {
           Thanks for being here. If you have ideas, suggestions, or just want to say hi <a href="mailto:hello@freebieskit.com" className="text-blue-600 underline">reach out anytime</a>.
         </p>
       </section>
-      <section>
+      <section className="mb-8 md:mb-12">
         <h2 className="text-xl font-medium mb-2">Sponsorships</h2>
         <p className="mb-4 text-base leading-relaxed">
           Freebieskit reaches thousands of visitors every month from designers and developers to digital creators, small business owners, and creative teams.<br/>
@@ -51,12 +51,12 @@ export default function Information() {
         <p className="mb-4 text-base leading-relaxed">
           We keep things clean and clutter-free. No popups. No spam. Just two placements that work:
         </p>
-        <ul className="list-disc pl-6 mb-4 text-base leading-relaxed">
+        <ul className="list-disc pl-5 sm:pl-6 mb-4 text-sm sm:text-base leading-relaxed">
           <li>Homepage banner – the most visible space on the site</li>
           <li>Featured placement in the resource list – seamlessly integrated with curated content</li>
         </ul>
         <p className="mb-4 text-base leading-relaxed">We&apos;ve partnered with:</p>
-        <ul className="list-disc pl-6 mb-4 text-base leading-relaxed">
+        <ul className="list-disc pl-5 sm:pl-6 mb-4 text-sm sm:text-base leading-relaxed">
           <li>Digital products & tools</li>
           <li>Financial, lifestyle, and productivity services</li>
           <li>SaaS companies, online communities, and brand campaigns</li>

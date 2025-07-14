@@ -34,19 +34,7 @@ const resources: Record<CategoryKey, Resource[]> = {
   "website-ui-kit": [
     { id: 1, title: "Modern Website UI Kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
     { id: 2, title: "Modern Website UI Kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
-    { id: 3, title: "Modern Website UI Kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
-    { id: 4, title: "Modern Website UI Kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
-    { id: 5, title: "Modern Website UI Kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
-    { id: 6, title: "Modern Website UI Kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
-    { id: 7, title: "Modern Website UI Kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
-    { id: 8, title: "Modern Website UI Kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
-    { id: 9, title: "Modern Website UI Kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
-    { id: 10, title: "Modern Website UI Kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
-    { id: 12, title: "Modern Website UI Kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
-    { id: 13, title: "Modern Website UI Kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
-    { id: 14, title: "Modern Website UI Kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
-    { id: 15, title: "Modern Website UI Kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
-    { id: 16, title: "Modern Website UI Kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
+    
   ],
   "mobile-ui-kit": [
     { id: 1, title: "Mobile UI Kit", desc: "Figma, Sketch", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
@@ -142,15 +130,15 @@ export default function ResourceSection() {
   const hasMore = visibleResources.length < currentResources.length;
 
   return (
-    <section id="resource-section" className="w-full max-w-[1440px] mx-auto px-[40px] py-[240px]">
+    <section id="resource-section" className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 md:px-10 py-16 md:py-[120px] lg:py-[240px]">
       {/* Title resource */}
-      <h2 className="text-4xl md:text-5xl font-medium mb-20 text-black text-left">Browse <span className="italic">Resources</span></h2>
+      <h2 className="text-2xl sm:text-3xl md:text-5xl font-medium mb-8 md:mb-20 text-black text-left">Browse <span className="italic">Resources</span></h2>
       {/* Tab resource */}
-      <div className="flex gap-2 overflow-x-auto pb-2 mb-8 scrollbar-hide border-b-0 resource-tab-container">
+      <div className="flex gap-2 overflow-x-auto pb-2 mb-6 md:mb-8 scrollbar-hide border-b-0 resource-tab-container">
         {categories.map((cat) => (
           <button
             key={cat.key}
-            className={`px-6 py-2 text-md font-medium whitespace-nowrap transition-colors duration-150 rounded-full
+            className={`px-4 sm:px-6 py-2 text-sm sm:text-md font-medium whitespace-nowrap transition-colors duration-150 rounded-full
               ${activeTab === cat.key
                 ? "bg-blue-600 text-white"
                 : "bg-gray-100 text-gray-500 hover:text-black"}
@@ -163,24 +151,24 @@ export default function ResourceSection() {
         ))}
       </div>
       {/* List Resource */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
         {visibleResources.map((res: Resource, idx: number) => (
           <Link
             key={`${activeTab}-${res.id}-${idx}`}
             href={`/resource/${activeTab}/${res.id}`}
-            className="rounded-2xl overflow-hidden flex flex-col group"
+            className="rounded-2xl overflow-hidden flex flex-col group bg-white"
             style={{ textDecoration: 'none' }}
           >
             <Image
-              src={res.image}
-              alt={res.title}
+               src={res.image}
+               alt={res.title}
               width={400}
               height={300}
-              className="w-full aspect-[4/3] object-cover rounded-[24px] transition-transform duration-300 group-hover:scale-105"
+              className="w-full aspect-[4/3] object-cover rounded-[18px] sm:rounded-[24px] transition-transform duration-300 group-hover:scale-105"
             />
-            <div className="flex items-center justify-between pt-4 pb-3">
+            <div className="flex items-center justify-between pt-3 pb-2 md:pt-4 md:pb-3">
               <div className="min-w-0">
-                <div className="font-semibold text-base text-black truncate">Verdant</div>
+                <div className="font-semibold text-sm sm:text-base text-black truncate">Verdant</div>
                 <div className="text-xs text-gray-500 truncate">by Ruslanlatypov for LSTORE</div>
               </div>
               <span className="ml-2">
