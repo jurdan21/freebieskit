@@ -19,7 +19,7 @@ export default function Information() {
           As designers and developers, we were tired of clicking through outdated blogs, saving scattered Figma links, and digging through noisy marketplaces all just to find something usable and free. So we built the site we wished existed.<br/>
           Freebieskit is a clean, fast, and curated library of high-quality, free design resources gathered from platforms we trust like Figma, Dribbble, Behance, GitHub, and the design community itself.
         </p>
-        <p className="mb-4 text-base leading-relaxed">What you'll find here:</p>
+        <p className="mb-4 text-base leading-relaxed">What you&apos;ll find here:</p>
         <ul className="list-disc pl-6 mb-4 text-base leading-relaxed">
           <li>UI Kits for websites, dashboards, and mobile apps</li>
           <li>Device Mockups for showcasing your work</li>
@@ -38,7 +38,7 @@ export default function Information() {
           <li>Credit creators fairly and transparently</li>
         </ul>
         <p className="mb-4 text-base leading-relaxed">
-          Whether you're a freelance designer, indie maker, student, startup team, or someone just getting started, we hope Freebieskit helps you spend less time hunting and more time building.<br/>
+          Whether you&apos;re a freelance designer, indie maker, student, startup team, or someone just getting started, we hope Freebieskit helps you spend less time hunting and more time building.<br/>
           Thanks for being here. If you have ideas, suggestions, or just want to say hi <a href="mailto:hello@freebieskit.com" className="text-blue-600 underline">reach out anytime</a>.
         </p>
       </section>
@@ -55,7 +55,7 @@ export default function Information() {
           <li>Homepage banner – the most visible space on the site</li>
           <li>Featured placement in the resource list – seamlessly integrated with curated content</li>
         </ul>
-        <p className="mb-4 text-base leading-relaxed">We’ve partnered with:</p>
+        <p className="mb-4 text-base leading-relaxed">We&apos;ve partnered with:</p>
         <ul className="list-disc pl-6 mb-4 text-base leading-relaxed">
           <li>Digital products & tools</li>
           <li>Financial, lifestyle, and productivity services</li>
@@ -63,7 +63,7 @@ export default function Information() {
           <li>Big and small businesses alike</li>
         </ul>
         <p className="mb-4 text-base leading-relaxed">
-          If you want to promote something with clarity and authenticity, let’s talk.<br/>
+          If you want to promote something with clarity and authenticity, let&apos;s talk.<br/>
           Email us at <a href="mailto:hello@freebieskit.com" className="text-blue-600 underline">hello@freebieskit.com</a> to get our latest rates and sponsor availability.<br/>
           Limited spots. Audience-first. No distractions.
         </p>
