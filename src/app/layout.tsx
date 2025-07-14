@@ -23,8 +23,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <head>
-        <link rel="icon" href="https://res.cloudinary.com/doihq9rxd/image/upload/v1752429202/Favicon_o1uqdc.svg" type="image/svg+xml" />
-        <link rel="shortcut icon" href="https://res.cloudinary.com/doihq9rxd/image/upload/v1752429202/Favicon_o1uqdc.svg" type="image/svg+xml" />
+        <link rel="icon" href="https://res.cloudinary.com/doihq9rxd/image/upload/v1752456843/Faviconn_wyapu1.svg" type="image/svg+xml" />
+        <link rel="shortcut icon" href="https://res.cloudinary.com/doihq9rxd/image/upload/v1752456843/Faviconn_wyapu1.svg" type="image/svg+xml" />
       </head>
       <body className={`${inter.className} antialiased`}>
         {children}

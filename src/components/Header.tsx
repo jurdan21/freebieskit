@@ -55,7 +55,7 @@ export default function Header() {
               <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeWidth="2" d="M6 9l6 6 6-6"/></svg>
             </button>
             {open && menu[0].dropdown && (
-              <div className="absolute left-0 mt-2 w-40 bg-white border rounded shadow-lg z-10 animate-fade-in">
+              <div className="absolute left-0 mt-2 w-40 bg-white rounded shadow-lg z-10 animate-fade-in">
                 {menu[0].dropdown.map((item) => (
                   <Link
                     key={item.label}
@@ -70,13 +70,13 @@ export default function Header() {
             )}
           </div>
           {/* Information */}
-          <a href="#" className="font-inter text-description transition" style={{ color: "var(--color-black-base)", fontWeight: 400 }}>
+          <Link href="/information" className="font-inter text-description transition" style={{ color: "var(--color-black-base)", fontWeight: 400 }}>
             Information
-          </a>
+          </Link>
         </nav>
       </div>
       {/* CTA */}
-      <Button href="#contact" className="ml-4" size="small">Submit Asset</Button>
+      <Button href="mailto:hello@freebieskit.com" className="ml-4" size="small">Submit Asset</Button>
     </header>
   );
 } 

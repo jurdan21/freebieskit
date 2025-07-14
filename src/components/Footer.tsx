@@ -23,7 +23,7 @@ const navigation = [
   ["Templates", "Presentations", "Fonts", "Illustrations", "3D Assets"],
   ["Branding Mockup", "Social Media", "Motions"]
 ];
-const support = ["Contact", "Informations", "Submit Asset"];
+const support = ["Contact", "Information", "Submit Asset"];
 const legal = ["Privacy", "Terms"];
 
 function getTabKey(label: string) {
@@ -67,7 +67,13 @@ export default function Footer() {
                 <div className="text-gray-400 font-medium mb-4 text-lg">Support</div>
                 <ul className="space-y-2">
                   {support.map((item) => (
-                    <li key={item} className="text-white text-lg font-normal leading-8 hover:underline cursor-pointer">{item}</li>
+                    item === "Information" ? (
+                      <li key={item}>
+                        <Link href="/information" className="text-white text-lg font-normal leading-8 hover:underline cursor-pointer">{item}</Link>
+                      </li>
+                    ) : (
+                      <li key={item} className="text-white text-lg font-normal leading-8 hover:underline cursor-pointer">{item}</li>
+                    )
                   ))}
                 </ul>
               </div>
@@ -76,7 +82,17 @@ export default function Footer() {
                 <div className="text-gray-400 font-medium mb-4 text-lg">Legal</div>
                 <ul className="space-y-2">
                   {legal.map((item) => (
-                    <li key={item} className="text-white text-lg font-normal leading-8 hover:underline cursor-pointer">{item}</li>
+                    item === "Privacy" ? (
+                      <li key={item}>
+                        <Link href="/privacy" className="text-white text-lg font-normal leading-8 hover:underline cursor-pointer">{item}</Link>
+                      </li>
+                    ) : item === "Terms" ? (
+                      <li key={item}>
+                        <Link href="/terms" className="text-white text-lg font-normal leading-8 hover:underline cursor-pointer">{item}</Link>
+                      </li>
+                    ) : (
+                      <li key={item} className="text-white text-lg font-normal leading-8 hover:underline cursor-pointer">{item}</li>
+                    )
                   ))}
                 </ul>
               </div>

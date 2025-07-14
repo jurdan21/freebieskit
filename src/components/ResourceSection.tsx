@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
@@ -40,9 +40,13 @@ const resources: Record<CategoryKey, Resource[]> = {
     { id: 6, title: "Modern Website UI Kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
     { id: 7, title: "Modern Website UI Kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
     { id: 8, title: "Modern Website UI Kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
-    { id: 6, title: "Modern Website UI Kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
-    { id: 7, title: "Modern Website UI Kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
-    { id: 8, title: "Modern Website UI Kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
+    { id: 9, title: "Modern Website UI Kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
+    { id: 10, title: "Modern Website UI Kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
+    { id: 12, title: "Modern Website UI Kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
+    { id: 13, title: "Modern Website UI Kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
+    { id: 14, title: "Modern Website UI Kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
+    { id: 15, title: "Modern Website UI Kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
+    { id: 16, title: "Modern Website UI Kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
   ],
   "mobile-ui-kit": [
     { id: 1, title: "Mobile UI Kit", desc: "Figma, Sketch", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
@@ -85,6 +89,9 @@ const resources: Record<CategoryKey, Resource[]> = {
 export default function ResourceSection() {
   const [activeTab, setActiveTab] = useState<CategoryKey>(categories[0].key);
   const searchParams = useSearchParams();
+  const [visibleCount, setVisibleCount] = useState(9);
+  const [isLoading, setIsLoading] = useState(false);
+  const loaderRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const tabKey = searchParams.get("tab");
@@ -96,7 +103,43 @@ export default function ResourceSection() {
         if (section) section.scrollIntoView({ behavior: 'smooth' });
       }, 0);
     }
+    // Reset visibleCount setiap searchParams berubah (termasuk saat mount)
+    setVisibleCount(9);
   }, [searchParams]);
+
+  // Infinite scroll logic
+  const currentResources = resources[activeTab] || [];
+  const handleObserver = useCallback((entries: IntersectionObserverEntry[]) => {
+    const target = entries[0];
+    if (
+      target.isIntersecting &&
+      !isLoading &&
+      visibleCount < currentResources.length
+    ) {
+      setIsLoading(true);
+      setTimeout(() => {
+        setVisibleCount((prev) => Math.min(prev + 9, currentResources.length));
+        setIsLoading(false);
+      }, 300); // delay agar tidak langsung bertubi-tubi
+    }
+  }, [isLoading, visibleCount, currentResources.length]);
+
+  useEffect(() => {
+    const option = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.1,
+    };
+    const observer = new window.IntersectionObserver(handleObserver, option);
+    const currentLoader = loaderRef.current;
+    if (currentLoader) observer.observe(currentLoader);
+    return () => {
+      if (currentLoader) observer.unobserve(currentLoader);
+    };
+  }, [handleObserver, loaderRef.current]);
+
+  const visibleResources = currentResources.slice(0, visibleCount);
+  const hasMore = visibleResources.length < currentResources.length;
 
   return (
     <section id="resource-section" className="w-full max-w-[1440px] mx-auto px-[40px] py-[240px]">
@@ -111,6 +154,7 @@ export default function ResourceSection() {
               ${activeTab === cat.key
                 ? "bg-blue-600 text-white"
                 : "bg-gray-100 text-gray-500 hover:text-black"}
+              cursor-pointer
             `}
             onClick={() => setActiveTab(cat.key)}
           >
@@ -120,7 +164,7 @@ export default function ResourceSection() {
       </div>
       {/* List Resource */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {(resources[activeTab] || []).map((res: Resource, idx: number) => (
+        {visibleResources.map((res: Resource, idx: number) => (
           <Link
             key={`${activeTab}-${res.id}-${idx}`}
             href={`/resource/${activeTab}/${res.id}`}
@@ -148,6 +192,12 @@ export default function ResourceSection() {
           </Link>
         ))}
       </div>
+      {/* Loader */}
+      {hasMore && (
+        <div ref={loaderRef} className="flex justify-center items-center py-8">
+          <span className="text-gray-400">{isLoading ? 'Loading more resources...' : ''}</span>
+        </div>
+      )}
     </section>
   );
 } 
