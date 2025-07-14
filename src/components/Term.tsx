@@ -32,9 +32,9 @@ export default function Term() {
         <h2 className="text-lg font-semibold mb-2 text-gray-700">3. What You Can’t Do</h2>
         <p className="mb-2">To keep things fair, here’s what’s not allowed:</p>
         <ul className="list-disc pl-6 mb-2">
-          <li>Don’t resell or redistribute the assets as your own (especially in bundles or marketplaces).</li>
-          <li>Don’t use bots or scripts to scrape/download our content in bulk.</li>
-          <li>Don’t misuse the site or content for anything illegal or shady.</li>
+          <li>Don&apos;t resell or redistribute the assets as your own (especially in bundles or marketplaces).</li>
+          <li>Don&apos;t use bots or scripts to scrape/download our content in bulk.</li>
+          <li>Don&apos;t misuse the site or content for anything illegal or shady.</li>
         </ul>
       </section>
       <section className="mb-6">

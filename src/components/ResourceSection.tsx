@@ -136,7 +136,7 @@ export default function ResourceSection() {
     return () => {
       if (currentLoader) observer.unobserve(currentLoader);
     };
-  }, [handleObserver, loaderRef.current]);
+  }, [handleObserver]);
 
   const visibleResources = currentResources.slice(0, visibleCount);
   const hasMore = visibleResources.length < currentResources.length;
