@@ -3,11 +3,12 @@ import Hero from "@/components/Hero";
 import ResourceSection from "@/components/ResourceSection";
 import { Suspense } from "react";
 import { Metadata } from "next";
+import Head from "next/head";
 
 export const metadata: Metadata = {
   title: "FreebiesKit - The Largest Free Design Asset Collection",
   description: "Discover thousands of free design assets: UI kits, mockups, icons, fonts, illustrations, and templates. Download instantly, no registration required. Curated for designers and developers worldwide.",
-  keywords: "free design assets, free ui kit, free mockup, free icon, free font, free template, design resources, freebies, download design assets",
+  keywords: "free design assets, free ui kit, free mockup, free icon, free font, free template, design resources, freebies, download design assets, free figma resources, free PSD, free XD resources, free UI resources, free web templates, free mobile templates, free vector, free SVG, free logo, free mockup, free 3d model, free illustration, free icon pack, free font download, free design inspiration, free creative assets, free presentation template, free dashboard UI, free device mockup, free branding kit",
   authors: [{ name: "FreebiesKit" }],
   creator: "FreebiesKit",
   publisher: "FreebiesKit",
@@ -77,6 +78,25 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="author" content="FreebiesKit" />
+        <meta name="theme-color" content="#0A0A0A" />
+        <meta name="robots" content="index, follow" />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/manifest.json" />
+        {/* Advanced meta tags */}
+        <meta name="msapplication-TileColor" content="#0A0A0A" />
+        <meta name="msapplication-config" content="/browserconfig.xml" />
+        <meta property="og:locale:alternate" content="id_ID" />
+        <meta name="twitter:creator" content="@freebieskit" />
+        <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="referrer" content="no-referrer-when-downgrade" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <meta name="apple-mobile-web-app-title" content="FreebiesKit" />
+      </Head>
       <Header />
       <Hero />
       <Suspense>
