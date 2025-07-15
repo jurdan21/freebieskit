@@ -69,7 +69,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function Page({ params }: { params: { idSlug: string } }) {
+export default async function Page({ params }: { params: { idSlug: string } }) {
   const id = params.idSlug.split('-')[0];
   return (
     <>
