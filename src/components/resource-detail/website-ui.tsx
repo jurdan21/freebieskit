@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 const resources = [
   {
@@ -30,6 +31,13 @@ export default function DetailWebsiteUI({ id }: { id: string }) {
   if (!resource) return <div className="py-16 text-center text-gray-500">Resource not found.</div>;
   return (
     <div className="max-w-3xl mx-auto py-16 px-4">
+      <Breadcrumbs
+        items={[
+          { label: "Home", href: "/" },
+          { label: "Website UI Kit", href: "/resource/website-ui-kit" },
+          { label: resource.title }
+        ]}
+      />
       <div className="flex items-start justify-between mb-6">
         <h1 className="text-2xl md:text-3xl font-medium text-black">{resource.title}</h1>
         <div className="text-sm text-gray-500 mt-1">by {resource.author} for {resource.platform}</div>

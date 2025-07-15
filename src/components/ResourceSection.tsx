@@ -10,6 +10,7 @@ type Resource = {
   title: string;
   desc: string;
   image: string;
+  slug?: string; // Added slug field
 };
 
 const categories = [
@@ -32,45 +33,44 @@ type CategoryKey = typeof categories[number]["key"];
 
 const resources: Record<CategoryKey, Resource[]> = {
   "website-ui-kit": [
-    { id: 1, title: "Modern Website UI Kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
-    { id: 2, title: "Modern Website UI Kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
-    
+    { id: 1, title: "Modern Website UI Kit", slug: "modern-website-ui-kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
+    { id: 2, title: "Modern Website UI Kit", slug: "modern-website-ui-kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
   ],
   "mobile-ui-kit": [
-    { id: 1, title: "Mobile UI Kit", desc: "Figma, Sketch", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
+    { id: 1, title: "Mobile UI Kit", slug: "mobile-ui-kit", desc: "Figma, Sketch", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
   ],
   "dashboard-ui-kit": [
-    { id: 1, title: "Dashboard UI Kit", desc: "Figma, Sketch", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
+    { id: 1, title: "Dashboard UI Kit", slug: "dashboard-ui-kit", desc: "Figma, Sketch", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
   ],
   "device-mockup": [
-    { id: 1, title: "Device Mockup", desc: "PSD, Figma", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
+    { id: 1, title: "Device Mockup", slug: "device-mockup", desc: "PSD, Figma", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
   ],
   "icons": [
-    { id: 1, title: "Essential Icons", desc: "SVG, PNG", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
+    { id: 1, title: "Essential Icons", slug: "essential-icons", desc: "SVG, PNG", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
   ],
   "templates": [
-    { id: 1, title: "Template Kit", desc: "Figma, Sketch", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
+    { id: 1, title: "Template Kit", slug: "template-kit", desc: "Figma, Sketch", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
   ],
   "presentations": [
-    { id: 1, title: "Presentation Kit", desc: "Keynote, PPT", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
+    { id: 1, title: "Presentation Kit", slug: "presentation-kit", desc: "Keynote, PPT", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
   ],
   "fonts": [
-    { id: 1, title: "Modern Sans", desc: "OTF, TTF", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
+    { id: 1, title: "Modern Sans", slug: "modern-sans", desc: "OTF, TTF", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
   ],
   "illustrations": [
-    { id: 1, title: "Startup Illustration", desc: "SVG, PNG", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
+    { id: 1, title: "Startup Illustration", slug: "startup-illustration", desc: "SVG, PNG", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
   ],
   "3d-assets": [
-    { id: 1, title: "3D Asset", desc: "OBJ, FBX", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
+    { id: 1, title: "3D Asset", slug: "3d-asset", desc: "OBJ, FBX", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
   ],
   "branding-mockup": [
-    { id: 1, title: "Branding Mockup", desc: "PSD, Figma", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
+    { id: 1, title: "Branding Mockup", slug: "branding-mockup", desc: "PSD, Figma", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
   ],
   "social-media": [
-    { id: 1, title: "Social Media Kit", desc: "PSD, Figma", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
+    { id: 1, title: "Social Media Kit", slug: "social-media-kit", desc: "PSD, Figma", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
   ],
   "motions": [
-    { id: 1, title: "Motion Graphic", desc: "AE, MP4", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
+    { id: 1, title: "Motion Graphic", slug: "motion-graphic", desc: "AE, MP4", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
   ],
 };
 
@@ -83,14 +83,14 @@ export default function ResourceSection() {
 
   useEffect(() => {
     const tabKey = searchParams.get("tab");
-    if (tabKey) {
-      const found = categories.find(cat => cat.key === tabKey);
-      if (found) setActiveTab(found.key);
-      setTimeout(() => {
-        const section = document.getElementById('resource-section');
-        if (section) section.scrollIntoView({ behavior: 'smooth' });
-      }, 0);
-    }
+      if (tabKey) {
+        const found = categories.find(cat => cat.key === tabKey);
+        if (found) setActiveTab(found.key);
+        setTimeout(() => {
+          const section = document.getElementById('resource-section');
+          if (section) section.scrollIntoView({ behavior: 'smooth' });
+        }, 0);
+      }
     // Reset visibleCount setiap searchParams berubah (termasuk saat mount)
     setVisibleCount(9);
   }, [searchParams]);
@@ -155,13 +155,13 @@ export default function ResourceSection() {
         {visibleResources.map((res: Resource, idx: number) => (
           <Link
             key={`${activeTab}-${res.id}-${idx}`}
-            href={`/resource/${activeTab}/${res.id}`}
+            href={`/resource/${activeTab}/${res.id}-${res.slug}`}
             className="rounded-2xl overflow-hidden flex flex-col group bg-white"
             style={{ textDecoration: 'none' }}
           >
             <Image
-               src={res.image}
-               alt={res.title}
+              src={res.image}
+              alt={res.title}
               width={400}
               height={300}
               className="w-full aspect-[4/3] object-cover rounded-[18px] sm:rounded-[24px] transition-transform duration-300 group-hover:scale-105"

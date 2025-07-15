@@ -20,8 +20,8 @@ const images = [
 
 export default function Hero() {
   return (
-    <section className="w-full flex flex-col items-center max-w-[1440px] mx-auto pt-16 md:pt-[92px] px-4">
-      <div className="flex flex-col gap-8 w-full md:w-3/4">
+    <section className="w-full flex flex-col items-center max-w-[1440px] mx-auto pt-16 md:pt-[92px]">
+      <div className="flex flex-col gap-8 w-full md:w-3/4 px-4">
         <h1 className="text-2xl sm:text-4xl md:text-6xl font-medium leading-tight text-black">
           <span className="italic">Free</span> UI Kits, Mockups,<br />
           Illustrations, and More
@@ -33,7 +33,7 @@ export default function Hero() {
           <span className="text-base sm:text-lg text-black md:ml-auto mt-2 md:mt-0">✴ Curated for Creators</span>
         </div>
       </div>
-      <div className="mt-8 md:mt-16 flex flex-col md:flex-row w-full gap-4 md:gap-2">
+      <div className="mt-8 md:mt-16 flex flex-col md:flex-row w-full gap-4 md:gap-2 px-4 md:px-0">
         {images.map((img, i) => (
           <div
             key={i}

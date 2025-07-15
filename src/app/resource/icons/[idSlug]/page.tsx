@@ -1,11 +1,11 @@
-import Privacy from "@/components/Privacy";
 import Header from "@/components/Header";
 import { Metadata } from "next";
+import Icons from "@/components/resource-detail/icons";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy - FreebiesKit",
-  description: "FreebiesKit Privacy Policy. Learn how we collect, use, and protect your personal information as you use our platform.",
-  keywords: "privacy policy, freebieskit privacy, data protection, personal information, privacy statement",
+  title: "Icons - FreebiesKit",
+  description: "A curated collection of free icons for UI and web design. Download icon packs, outline, filled, and custom icons for your creative projects.",
+  keywords: "free icons, icon free, download icon, icon pack, ui icons, web icons, icon collection",
   authors: [{ name: "FreebiesKit" }],
   creator: "FreebiesKit",
   publisher: "FreebiesKit",
@@ -16,21 +16,21 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL("https://freebieskit.com"),
   alternates: {
-    canonical: "https://freebieskit.com/privacy",
+    canonical: "https://freebieskit.com/resource/icons",
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://freebieskit.com/privacy",
+    url: "https://freebieskit.com/resource/icons",
     siteName: "FreebiesKit",
-    title: "Privacy Policy - FreebiesKit",
-    description: "FreebiesKit Privacy Policy. Learn how we collect, use, and protect your personal information as you use our platform.",
+    title: "Icons - FreebiesKit",
+    description: "A curated collection of free icons for UI and web design. Download icon packs, outline, filled, and custom icons for your creative projects.",
     images: [
       {
         url: "/og-image.svg",
         width: 1200,
         height: 630,
-        alt: "Privacy Policy - FreebiesKit",
+        alt: "Icons - FreebiesKit",
       },
     ],
   },
@@ -38,8 +38,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@freebieskit",
     creator: "@freebieskit",
-    title: "Privacy Policy - FreebiesKit",
-    description: "FreebiesKit Privacy Policy. Learn how we collect, use, and protect your personal information as you use our platform.",
+    title: "Icons - FreebiesKit",
+    description: "A curated collection of free icons for UI and web design. Download icon packs, outline, filled, and custom icons for your creative projects.",
     images: ["/og-image.svg"],
   },
   robots: {
@@ -57,9 +57,9 @@ export const metadata: Metadata = {
     "application/ld+json": JSON.stringify({
       "@context": "https://schema.org",
       "@type": "WebPage",
-      "name": "Privacy Policy - FreebiesKit",
-      "url": "https://freebieskit.com/privacy",
-      "description": "FreebiesKit Privacy Policy. Learn how we collect, use, and protect your personal information as you use our platform.",
+      "name": "Icons - FreebiesKit",
+      "url": "https://freebieskit.com/resource/icons",
+      "description": "A curated collection of free icons for UI and web design.",
       "isPartOf": {
         "@type": "WebSite",
         "name": "FreebiesKit",
@@ -69,11 +69,12 @@ export const metadata: Metadata = {
   },
 };
 
-export default function PrivacyPage() {
+export default function Page({ params }: { params: { idSlug: string } }) {
+  const id = params.idSlug.split('-')[0];
   return (
     <>
       <Header />
-      <Privacy />
+      <Icons id={id} />
     </>
   );
 } 
