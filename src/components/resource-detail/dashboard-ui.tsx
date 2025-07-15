@@ -2,33 +2,10 @@ import React from "react";
 import Image from "next/image";
 import Button from "@/components/Button";
 import Breadcrumbs from "@/components/Breadcrumbs";
-
-const resources = [
-  {
-    id: 1,
-    title: "Admin Dashboard Kit",
-    author: "DashboardPro",
-    platform: "Figma",
-    image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp",
-    overview: "Complete admin dashboard UI kit with charts, tables, forms, and analytics components. Perfect for SaaS and admin applications.",
-    category: "Dashboard UI Kit",
-    compatibility: "Figma, Sketch",
-  },
-  {
-    id: 2,
-    title: "Analytics Dashboard",
-    author: "DataViz",
-    platform: "Figma",
-    image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp",
-    overview: "Modern analytics dashboard with data visualization components, charts, and interactive elements.",
-    category: "Dashboard UI Kit",
-    compatibility: "Figma",
-  },
-  // ... tambahkan data lain sesuai kebutuhan
-];
+import { dashboardUiResources } from "@/data/dashboard-ui";
 
 export default function DetailDashboardUI({ id }: { id: string }) {
-  const resource = resources.find(r => r.id === Number(id));
+  const resource = dashboardUiResources.find(r => r.id === Number(id));
   if (!resource) return <div className="py-16 text-center text-gray-500">Resource not found.</div>;
   
   return (

@@ -1,32 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import Breadcrumbs from "@/components/Breadcrumbs";
-
-const resources = [
-  {
-    id: 1,
-    title: "Landing Page Template",
-    author: "TemplateStudio",
-    platform: "Figma",
-    image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp",
-    overview: "Modern landing page template with hero section, features, testimonials, and contact form. Fully responsive design.",
-    category: "Templates",
-    compatibility: "Figma, HTML/CSS",
-  },
-  {
-    id: 2,
-    title: "E-commerce Template",
-    author: "WebTemplate",
-    platform: "Figma",
-    image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp",
-    overview: "Complete e-commerce website template with product listings, cart, checkout, and user dashboard.",
-    category: "Templates",
-    compatibility: "Figma",
-  },
-];
+import { templatesResources } from "@/data/templates";
 
 export default function DetailTemplates({ id }: { id: string }) {
-  const resource = resources.find(r => r.id === Number(id));
+  const resource = templatesResources.find(r => r.id === Number(id));
   if (!resource) return <div className="py-16 text-center text-gray-500">Resource not found.</div>;
   
   return (

@@ -2,32 +2,10 @@ import React from "react";
 import Image from "next/image";
 import Button from "@/components/Button";
 import Breadcrumbs from "@/components/Breadcrumbs";
-
-const resources = [
-  {
-    id: 1,
-    title: "UI Animation Pack",
-    author: "MotionStudio",
-    platform: "After Effects",
-    image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp",
-    overview: "Complete UI animation pack with micro-interactions, transitions, and loading animations for web and mobile apps.",
-    category: "Motions",
-    compatibility: "After Effects, Lottie",
-  },
-  {
-    id: 2,
-    title: "Logo Animation Kit",
-    author: "LogoMotion",
-    platform: "After Effects",
-    image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp",
-    overview: "Professional logo animation kit with various styles and effects for brand identity projects.",
-    category: "Motions",
-    compatibility: "After Effects",
-  },
-];
+import { motionsResources } from "@/data/motions";
 
 export default function DetailMotions({ id }: { id: string }) {
-  const resource = resources.find(r => r.id === Number(id));
+  const resource = motionsResources.find(r => r.id === Number(id));
   if (!resource) return <div className="py-16 text-center text-gray-500">Resource not found.</div>;
   
   return (

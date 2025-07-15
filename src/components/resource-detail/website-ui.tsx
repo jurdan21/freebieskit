@@ -1,33 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import Breadcrumbs from "@/components/Breadcrumbs";
-
-const resources = [
-  {
-    id: 1,
-    title: "Verdant",
-    author: "Ruslanlatypov",
-    platform: "LSTORE",
-    image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp",
-    overview: "Sed libero euismod velit congue purus. Non mauris mi quis nisi viverra suspendisse nec tortor. Rhoncus quam scelerisque vel ullamcorper nisi in.",
-    category: "Website Design",
-    compatibility: "Figma",
-  },
-  {
-    id: 2,
-    title: "Verdant",
-    author: "Ruslanlatypov",
-    platform: "LSTORE",
-    image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp",
-    overview: "Sed libero euismod velit congue purus. Non mauris mi quis nisi viverra suspendisse nec tortor. Rhoncus quam scelerisque vel ullamcorper nisi in.",
-    category: "Website Design",
-    compatibility: "Figma",
-  },
-  // ... tambahkan data lain sesuai kebutuhan
-];
+import { websiteUiResources } from "@/data/website-ui";
 
 export default function DetailWebsiteUI({ id }: { id: string }) {
-  const resource = resources.find(r => r.id === Number(id));
+  const resource = websiteUiResources.find(r => r.id === Number(id));
   if (!resource) return <div className="py-16 text-center text-gray-500">Resource not found.</div>;
   return (
     <div className="max-w-3xl mx-auto py-16 px-4">

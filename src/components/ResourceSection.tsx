@@ -4,10 +4,25 @@ import React, { useEffect, useState, useRef, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { websiteUiResources } from "@/data/website-ui";
+import { mobileUiResources } from "@/data/mobile-ui";
+import { brandingMockupResources } from "@/data/branding-mockup";
+import { dashboardUiResources } from "@/data/dashboard-ui";
+import { deviceMockupResources } from "@/data/device-mockup";
+import { fontsResources } from "@/data/fonts";
+import { iconsResources } from "@/data/icons";
+import { illustrationsResources } from "@/data/illustrations";
+import { motionsResources } from "@/data/motions";
+import { presentationsResources } from "@/data/presentations";
+import { socialMediaResources } from "@/data/social-media";
+import { templatesResources } from "@/data/templates";
+import { threeDAssetsResources } from "@/data/three-d-assets";
+import { webDesignInspirationResources } from "@/data/web-design-inspiration";
 
 type Resource = {
   id: number;
   title: string;
+  author: string;
   desc: string;
   image: string;
   slug?: string; // Added slug field
@@ -27,51 +42,26 @@ const categories = [
   { key: "branding-mockup", label: "Branding Mockup" },
   { key: "social-media", label: "Social Media" },
   { key: "motions", label: "Motions" },
+  { key: "web-design-inspiration", label: "Web Design Inspiration" },
 ] as const;
 
 type CategoryKey = typeof categories[number]["key"];
 
 const resources: Record<CategoryKey, Resource[]> = {
-  "website-ui-kit": [
-    { id: 1, title: "Modern Website UI Kit", slug: "modern-website-ui-kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
-    { id: 2, title: "Modern Website UI Kit", slug: "modern-website-ui-kit", desc: "Figma, Sketch, XD", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
-  ],
-  "mobile-ui-kit": [
-    { id: 1, title: "Mobile UI Kit", slug: "mobile-ui-kit", desc: "Figma, Sketch", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
-  ],
-  "dashboard-ui-kit": [
-    { id: 1, title: "Dashboard UI Kit", slug: "dashboard-ui-kit", desc: "Figma, Sketch", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
-  ],
-  "device-mockup": [
-    { id: 1, title: "Device Mockup", slug: "device-mockup", desc: "PSD, Figma", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
-  ],
-  "icons": [
-    { id: 1, title: "Essential Icons", slug: "essential-icons", desc: "SVG, PNG", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
-  ],
-  "templates": [
-    { id: 1, title: "Template Kit", slug: "template-kit", desc: "Figma, Sketch", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
-  ],
-  "presentations": [
-    { id: 1, title: "Presentation Kit", slug: "presentation-kit", desc: "Keynote, PPT", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
-  ],
-  "fonts": [
-    { id: 1, title: "Modern Sans", slug: "modern-sans", desc: "OTF, TTF", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
-  ],
-  "illustrations": [
-    { id: 1, title: "Startup Illustration", slug: "startup-illustration", desc: "SVG, PNG", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
-  ],
-  "3d-assets": [
-    { id: 1, title: "3D Asset", slug: "3d-asset", desc: "OBJ, FBX", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
-  ],
-  "branding-mockup": [
-    { id: 1, title: "Branding Mockup", slug: "branding-mockup", desc: "PSD, Figma", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
-  ],
-  "social-media": [
-    { id: 1, title: "Social Media Kit", slug: "social-media-kit", desc: "PSD, Figma", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
-  ],
-  "motions": [
-    { id: 1, title: "Motion Graphic", slug: "motion-graphic", desc: "AE, MP4", image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp" },
-  ],
+  "website-ui-kit": websiteUiResources,
+  "mobile-ui-kit": mobileUiResources,
+  "dashboard-ui-kit": dashboardUiResources,
+  "device-mockup": deviceMockupResources,
+  "icons": iconsResources,
+  "templates": templatesResources,
+  "presentations": presentationsResources,
+  "fonts": fontsResources,
+  "illustrations": illustrationsResources,
+  "3d-assets": threeDAssetsResources,
+  "branding-mockup": brandingMockupResources,
+  "social-media": socialMediaResources,
+  "motions": motionsResources,
+  "web-design-inspiration": webDesignInspirationResources,
 };
 
 export default function ResourceSection() {
@@ -96,7 +86,7 @@ export default function ResourceSection() {
   }, [searchParams]);
 
   // Infinite scroll logic
-  const currentResources = resources[activeTab] || [];
+  const currentResources = (resources[activeTab] || []).slice().reverse();
   const handleObserver = useCallback((entries: IntersectionObserverEntry[]) => {
     const target = entries[0];
     if (
@@ -168,8 +158,8 @@ export default function ResourceSection() {
             />
             <div className="flex items-center justify-between pt-3 pb-2 md:pt-4 md:pb-3">
               <div className="min-w-0">
-                <div className="font-semibold text-sm sm:text-base text-black truncate">Verdant</div>
-                <div className="text-xs text-gray-500 truncate">by Ruslanlatypov for LSTORE</div>
+                <div className="font-semibold text-sm sm:text-base text-black truncate">{res.title}</div>
+                <div className="text-xs text-gray-500 truncate">by {res.author}</div>
               </div>
               <span className="ml-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5 text-gray-400">

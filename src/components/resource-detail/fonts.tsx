@@ -1,32 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import Button from "@/components/Button";
-
-const resources = [
-  {
-    id: 1,
-    title: "Modern Sans Serif Font",
-    author: "TypeStudio",
-    platform: "Google Fonts",
-    image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp",
-    overview: "Clean and modern sans-serif font family with multiple weights and styles. Perfect for web and print design.",
-    category: "Fonts",
-    compatibility: "Web, Desktop, Mobile",
-  },
-  {
-    id: 2,
-    title: "Display Font Collection",
-    author: "FontDesigner",
-    platform: "Adobe Fonts",
-    image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp",
-    overview: "Bold display font collection with unique character styles and multiple variations.",
-    category: "Fonts",
-    compatibility: "Web, Desktop",
-  },
-];
+import { fontsResources } from "@/data/fonts";
 
 export default function DetailFonts({ id }: { id: string }) {
-  const resource = resources.find(r => r.id === Number(id));
+  const resource = fontsResources.find(r => r.id === Number(id));
   if (!resource) return <div className="py-16 text-center text-gray-500">Resource not found.</div>;
   
   return (

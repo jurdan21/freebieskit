@@ -1,32 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import Breadcrumbs from "@/components/Breadcrumbs";
-
-const resources = [
-  {
-    id: 1,
-    title: "Business Illustration Pack",
-    author: "IllustrationStudio",
-    platform: "Figma",
-    image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp",
-    overview: "Professional business illustration pack with modern style, perfect for corporate websites and presentations.",
-    category: "Illustrations",
-    compatibility: "Figma, SVG, PNG",
-  },
-  {
-    id: 2,
-    title: "Character Illustration Set",
-    author: "CharacterDesign",
-    platform: "Figma",
-    image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp",
-    overview: "Cute character illustration set with different poses, expressions, and scenarios for various projects.",
-    category: "Illustrations",
-    compatibility: "Figma",
-  },
-];
+import { illustrationsResources } from "@/data/illustrations";
 
 export default function DetailIllustrations({ id }: { id: string }) {
-  const resource = resources.find(r => r.id === Number(id));
+  const resource = illustrationsResources.find(r => r.id === Number(id));
   if (!resource) return <div className="py-16 text-center text-gray-500">Resource not found.</div>;
   
   return (

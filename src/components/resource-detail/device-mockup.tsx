@@ -1,33 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import Breadcrumbs from "@/components/Breadcrumbs";
-
-const resources = [
-  {
-    id: 1,
-    title: "iPhone Mockup Collection",
-    author: "MockupStudio",
-    platform: "Photoshop",
-    image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp",
-    overview: "Professional iPhone mockup collection with realistic lighting, shadows, and multiple device angles. Perfect for app presentations.",
-    category: "Device Mockup",
-    compatibility: "Photoshop, Figma",
-  },
-  {
-    id: 2,
-    title: "MacBook Pro Mockups",
-    author: "DeviceMockup",
-    platform: "Photoshop",
-    image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp",
-    overview: "High-quality MacBook Pro mockups with different angles, lighting conditions, and realistic reflections.",
-    category: "Device Mockup",
-    compatibility: "Photoshop",
-  },
-  // ... tambahkan data lain sesuai kebutuhan
-];
+import { deviceMockupResources } from "@/data/device-mockup";
 
 export default function DetailDeviceMockup({ id }: { id: string }) {
-  const resource = resources.find(r => r.id === Number(id));
+  const resource = deviceMockupResources.find(r => r.id === Number(id));
   if (!resource) return <div className="py-16 text-center text-gray-500">Resource not found.</div>;
   
   return (

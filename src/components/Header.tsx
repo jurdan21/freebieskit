@@ -19,6 +19,7 @@ const resourceCategories = [
   { key: "branding-mockup", label: "Branding Mockup" },
   { key: "social-media", label: "Social Media" },
   { key: "motions", label: "Motions" },
+  { key: "web-design-inspiration", label: "Web Design Inspiration" },
 ];
 
 const menu = [

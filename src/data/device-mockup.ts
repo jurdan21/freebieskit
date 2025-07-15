@@ -1,0 +1,26 @@
+export const deviceMockupResources = [
+  {
+    id: 1,
+    title: "iPhone Mockup Collection",
+    author: "MockupStudio",
+    desc: "Professional iPhone mockup collection with realistic lighting, shadows, and multiple device angles. Perfect for app presentations.",
+    image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp",
+    slug: "iphone-mockup-collection",
+    platform: "Photoshop",
+    overview: "Professional iPhone mockup collection with realistic lighting, shadows, and multiple device angles. Perfect for app presentations.",
+    category: "Device Mockup",
+    compatibility: "Photoshop, Figma",
+  },
+  {
+    id: 2,
+    title: "MacBook Pro Mockups",
+    author: "DeviceMockup",
+    desc: "High-quality MacBook Pro mockups with different angles, lighting conditions, and realistic reflections.",
+    image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp",
+    slug: "macbook-pro-mockups",
+    platform: "Photoshop",
+    overview: "High-quality MacBook Pro mockups with different angles, lighting conditions, and realistic reflections.",
+    category: "Device Mockup",
+    compatibility: "Photoshop",
+  },
+]; 

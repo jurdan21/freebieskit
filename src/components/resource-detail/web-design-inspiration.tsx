@@ -1,15 +1,14 @@
 import React from "react";
 import Image from "next/image";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { threeDAssetsResources } from "@/data/three-d-assets";
+import { webDesignInspirationResources } from "@/data/web-design-inspiration";
 
-export default function Detail3DAssets({ id }: { id: string }) {
-  const resource = threeDAssetsResources.find(r => r.id === Number(id));
+export default function DetailWebDesignInspiration({ id }: { id: string }) {
+  const resource = webDesignInspirationResources.find(r => r.id === Number(id));
   if (!resource) return <div className="py-16 text-center text-gray-500">Resource not found.</div>;
-  
   return (
     <div className="max-w-3xl mx-auto py-16 px-4">
-      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "3D Assets", href: "/resource/3d-assets" }, { label: resource.title }]} />
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Web Design Inspiration", href: "/?tab=web-design-inspiration#resource-section" }, { label: resource.title }]} />
       <div className="flex items-start justify-between mb-6">
         <h1 className="text-2xl md:text-3xl font-medium text-black">{resource.title}</h1>
         <div className="text-sm text-gray-500 mt-1">by {resource.author} for {resource.platform}</div>
@@ -27,7 +26,7 @@ export default function Detail3DAssets({ id }: { id: string }) {
         <div className="text-gray-400 font-medium mb-1">Compatibility</div>
         <div className="text-base text-black">{resource.compatibility}</div>
       </div>
-      <a href="#" className="inline-block px-6 py-2 rounded-full bg-blue-600 text-white font-medium shadow hover:bg-blue-700 transition">Download Now</a>
+      <a href="#" className="inline-block px-6 py-2 rounded-full bg-blue-600 text-white font-medium shadow hover:bg-blue-700 transition">Visit Website</a>
     </div>
   );
 } 

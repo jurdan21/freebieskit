@@ -2,32 +2,10 @@ import React from "react";
 import Image from "next/image";
 import Button from "@/components/Button";
 import Breadcrumbs from "@/components/Breadcrumbs";
-
-const resources = [
-  {
-    id: 1,
-    title: "Line Icons Pack",
-    author: "IconStudio",
-    platform: "Figma",
-    image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp",
-    overview: "Complete line icon pack with 500+ icons in consistent style. Perfect for web and mobile applications.",
-    category: "Icons",
-    compatibility: "Figma, Sketch, SVG",
-  },
-  {
-    id: 2,
-    title: "3D Icons Collection",
-    author: "IconDesigner",
-    platform: "Figma",
-    image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp",
-    overview: "Modern 3D icon collection with depth, shadows, and realistic lighting effects.",
-    category: "Icons",
-    compatibility: "Figma",
-  },
-];
+import { iconsResources } from "@/data/icons";
 
 export default function DetailIcons({ id }: { id: string }) {
-  const resource = resources.find(r => r.id === Number(id));
+  const resource = iconsResources.find(r => r.id === Number(id));
   if (!resource) return <div className="py-16 text-center text-gray-500">Resource not found.</div>;
   
   return (

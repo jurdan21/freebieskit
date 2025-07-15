@@ -1,32 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import Breadcrumbs from "@/components/Breadcrumbs";
-
-const resources = [
-  {
-    id: 1,
-    title: "Logo Mockup Collection",
-    author: "BrandStudio",
-    platform: "Photoshop",
-    image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp",
-    overview: "Professional logo mockup collection with realistic applications on various surfaces and materials.",
-    category: "Branding Mockup",
-    compatibility: "Photoshop, Figma",
-  },
-  {
-    id: 2,
-    title: "Business Card Mockups",
-    author: "CardDesign",
-    platform: "Photoshop",
-    image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp",
-    overview: "High-quality business card mockups with different paper textures and printing effects.",
-    category: "Branding Mockup",
-    compatibility: "Photoshop",
-  },
-];
+import { brandingMockupResources } from "@/data/branding-mockup";
 
 export default function DetailBrandingMockup({ id }: { id: string }) {
-  const resource = resources.find(r => r.id === Number(id));
+  const resource = brandingMockupResources.find(r => r.id === Number(id));
   if (!resource) return <div className="py-16 text-center text-gray-500">Resource not found.</div>;
   
   return (

@@ -1,32 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import Breadcrumbs from "@/components/Breadcrumbs";
-
-const resources = [
-  {
-    id: 1,
-    title: "Instagram Post Templates",
-    author: "SocialDesign",
-    platform: "Figma",
-    image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp",
-    overview: "Complete Instagram post template collection with different layouts, stories, and carousel designs.",
-    category: "Social Media",
-    compatibility: "Figma, Canva",
-  },
-  {
-    id: 2,
-    title: "Facebook Cover Templates",
-    author: "SocialStudio",
-    platform: "Figma",
-    image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp",
-    overview: "Professional Facebook cover templates with proper dimensions and modern design elements.",
-    category: "Social Media",
-    compatibility: "Figma",
-  },
-];
+import { socialMediaResources } from "@/data/social-media";
 
 export default function DetailSocialMedia({ id }: { id: string }) {
-  const resource = resources.find(r => r.id === Number(id));
+  const resource = socialMediaResources.find(r => r.id === Number(id));
   if (!resource) return <div className="py-16 text-center text-gray-500">Resource not found.</div>;
   
   return (

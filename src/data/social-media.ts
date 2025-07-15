@@ -1,0 +1,26 @@
+export const socialMediaResources = [
+  {
+    id: 1,
+    title: "Instagram Post Templates",
+    author: "SocialDesign",
+    desc: "Complete Instagram post template collection with different layouts, stories, and carousel designs.",
+    image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp",
+    slug: "instagram-post-templates",
+    platform: "Figma",
+    overview: "Complete Instagram post template collection with different layouts, stories, and carousel designs.",
+    category: "Social Media",
+    compatibility: "Figma, Canva",
+  },
+  {
+    id: 2,
+    title: "Facebook Cover Templates",
+    author: "SocialStudio",
+    desc: "Professional Facebook cover templates with proper dimensions and modern design elements.",
+    image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp",
+    slug: "facebook-cover-templates",
+    platform: "Figma",
+    overview: "Professional Facebook cover templates with proper dimensions and modern design elements.",
+    category: "Social Media",
+    compatibility: "Figma",
+  },
+]; 

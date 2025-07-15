@@ -1,0 +1,26 @@
+export const fontsResources = [
+  {
+    id: 1,
+    title: "Modern Sans Serif Font",
+    author: "TypeStudio",
+    desc: "Clean and modern sans-serif font family with multiple weights and styles. Perfect for web and print design.",
+    image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp",
+    slug: "modern-sans-serif-font",
+    platform: "Google Fonts",
+    overview: "Clean and modern sans-serif font family with multiple weights and styles. Perfect for web and print design.",
+    category: "Fonts",
+    compatibility: "Web, Desktop, Mobile",
+  },
+  {
+    id: 2,
+    title: "Display Font Collection",
+    author: "FontDesigner",
+    desc: "Bold display font collection with unique character styles and multiple variations.",
+    image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp",
+    slug: "display-font-collection",
+    platform: "Adobe Fonts",
+    overview: "Bold display font collection with unique character styles and multiple variations.",
+    category: "Fonts",
+    compatibility: "Web, Desktop",
+  },
+]; 

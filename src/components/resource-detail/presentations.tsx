@@ -1,32 +1,10 @@
 import React from "react";
 import Image from "next/image";
 import Breadcrumbs from "@/components/Breadcrumbs";
-
-const resources = [
-  {
-    id: 1,
-    title: "Business Presentation Kit",
-    author: "SlideMaster",
-    platform: "PowerPoint",
-    image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp",
-    overview: "Professional business presentation template with modern slides, charts, and infographics. Perfect for corporate presentations.",
-    category: "Presentations",
-    compatibility: "PowerPoint, Keynote",
-  },
-  {
-    id: 2,
-    title: "Creative Portfolio Slides",
-    author: "DesignSlides",
-    platform: "PowerPoint",
-    image: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img5_uadbh2.webp",
-    overview: "Creative portfolio presentation template with animated transitions and modern design elements.",
-    category: "Presentations",
-    compatibility: "PowerPoint",
-  },
-];
+import { presentationsResources } from "@/data/presentations";
 
 export default function DetailPresentations({ id }: { id: string }) {
-  const resource = resources.find(r => r.id === Number(id));
+  const resource = presentationsResources.find(r => r.id === Number(id));
   if (!resource) return <div className="py-16 text-center text-gray-500">Resource not found.</div>;
   
   return (

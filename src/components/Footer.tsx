@@ -16,12 +16,13 @@ const resourceCategories = [
   { key: "branding-mockup", label: "Branding Mockup" },
   { key: "social-media", label: "Social Media" },
   { key: "motions", label: "Motions" },
+  { key: "web-design-inspiration", label: "Web Design Inspiration" },
 ];
 
 const navigation = [
   ["Mobile UI Kit", "Website UI Kit", "Dashboard UI Kit", "Device Mockup", "Icons"],
   ["Templates", "Presentations", "Fonts", "Illustrations", "3D Assets"],
-  ["Branding Mockup", "Social Media", "Motions"]
+  ["Branding Mockup", "Social Media", "Motions", "Web Design Inspiration"]
 ];
 const support = ["Contact", "Information", "Submit Asset"];
 const legal = ["Privacy", "Terms"];
@@ -33,7 +34,7 @@ function getTabKey(label: string) {
 
 export default function Footer() {
   return (
-    <footer className="bg-[#0A0A0A] text-white pt-10 pb-8 px-4 md:px-16">
+    <footer className="bg-[#0A0A0A] text-white pt-[120px] pb-8 px-4 md:px-16">
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-12 md:gap-0">
           {/* Logo & Navigation */}
