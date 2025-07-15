@@ -20,7 +20,7 @@ export default function Breadcrumbs({ items }: { items: BreadcrumbItem[] }) {
               ) : (
                 <span itemProp="name" style={{ color: "var(--color-black-light)", fontWeight: isLast ? 500 : undefined }}>{item.label}</span>
               )}
-              <meta itemProp="position" content={idx + 1} />
+              <meta itemProp="position" content={(idx + 1).toString()} />
               {idx < items.length - 1 && <span className="mx-2 text-gray-400">/</span>}
             </li>
           );
