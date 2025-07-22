@@ -1,13 +1,60 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Button from "@/components/Button";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { motionsResources } from "@/data/motions";
+import { supabase } from "@/lib/supabaseClient";
+
+interface Resource {
+  id: number;
+  title: string;
+  author: string;
+  platform: string;
+  image: string;
+  overview: string;
+  category: string;
+  compatibility: string;
+  download_link: string;
+}
 
 export default function DetailMotions({ id }: { id: string }) {
-  const resource = motionsResources.find(r => r.id === Number(id));
-  if (!resource) return <div className="py-16 text-center text-gray-500">Resource not found.</div>;
-  
+  const [resource, setResource] = useState<Resource | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [categoryName, setCategoryName] = useState<string>("");
+
+  useEffect(() => {
+    async function fetchResource() {
+      setLoading(true);
+      setError(null);
+      const { data, error } = await supabase
+        .from('resources')
+        .select('*')
+        .eq('category_slug', 'motions')
+        .eq('id', Number(id))
+        .single();
+      if (error || !data) {
+        setError('Resource not found.');
+        setResource(null);
+      } else {
+        setResource(data);
+        // Fetch nama kategori dari category_id
+        const { data: cat } = await supabase
+          .from('categories')
+          .select('name')
+          .eq('id', data.category_id)
+          .single();
+        setCategoryName(cat?.name || "");
+      }
+      setLoading(false);
+    }
+    fetchResource();
+  }, [id]);
+
+  if (loading) return <div className="py-16 text-center text-gray-500">Loading...</div>;
+  if (error || !resource) return <div className="py-16 text-center text-gray-500">{error || 'Resource not found.'}</div>;
+
   return (
     <div className="max-w-3xl mx-auto py-16 px-4">
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Motions", href: "/resource/motions" }, { label: resource.title }]} />
@@ -22,13 +69,13 @@ export default function DetailMotions({ id }: { id: string }) {
       </div>
       <div className="mb-6">
         <div className="text-gray-400 font-medium mb-1">Category</div>
-        <div className="text-sm sm:text-base text-black">{resource.category}</div>
+        <div className="text-base text-black">{categoryName}</div>
       </div>
       <div className="mb-10">
         <div className="text-gray-400 font-medium mb-1">Compatibility</div>
         <div className="text-sm sm:text-base text-black">{resource.compatibility}</div>
       </div>
-      <Button href="#" size="large">Download Now</Button>
+      <Button href={resource.download_link} size="large" target="_blank" rel="noopener noreferrer">Download Now</Button>
     </div>
   );
 } 
