@@ -128,6 +128,17 @@ export default function ResourceSection() {
   const visibleResources = currentResources.slice(0, visibleCount);
   const hasMore = visibleResources.length < currentResources.length;
 
+  function slugify(text: string) {
+    return text
+      .toString()
+      .toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[^\w-]+/g, '')
+      .replace(/--+/g, '-')
+      .replace(/^-+/, '')
+      .replace(/-+$/, '');
+  }
+
   return (
     <section id="resource-section" className="w-full max-w-[1440px] mx-auto px-4 sm:px-6 md:px-10 py-16 md:py-[120px] lg:py-[240px]">
       {/* Title resource */}
@@ -159,7 +170,7 @@ export default function ResourceSection() {
           visibleResources.map((res: Resource, idx: number) => (
             <Link
               key={`${activeTab}-${res.id}-${idx}`}
-              href={`/resource/${activeTab}/${res.id}-${res.slug || ''}`}
+              href={`/resource/${activeTab}/${res.id}-${slugify(res.title)}`}
               className="rounded-2xl overflow-hidden flex flex-col group bg-white"
               style={{ textDecoration: 'none' }}
             >
