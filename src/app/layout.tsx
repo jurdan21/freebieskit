@@ -25,6 +25,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="https://res.cloudinary.com/doihq9rxd/image/upload/v1752456843/Faviconn_wyapu1.svg" type="image/svg+xml" />
         <link rel="shortcut icon" href="https://res.cloudinary.com/doihq9rxd/image/upload/v1752456843/Faviconn_wyapu1.svg" type="image/svg+xml" />
+        <meta name="google-site-verification" content="bejPZAYfp_9b7ogV1JyFmfr9yTGuy97F8ViQ3swi614" />
       </head>
       <body className={`${inter.className} antialiased`}>
         {children}
