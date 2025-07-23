@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from 'next/font/google';
 import "./globals.css";
 import Footer from "@/components/Footer";
+import Script from "next/script";
 // import Head from "next/head"; // Dihapus karena tidak digunakan
 
 const inter = Inter({ 
@@ -42,17 +43,18 @@ export default function RootLayout({
           }
         `}</script>
         {/* Google Analytics */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-01BNDY8PPE"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-01BNDY8PPE');
-            `,
-          }}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-01BNDY8PPE"
+          strategy="afterInteractive"
         />
+        <Script id="ga-gtag" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-01BNDY8PPE');
+          `}
+        </Script>
       </head>
       <body className={`${inter.className} antialiased`}>
         {children}
