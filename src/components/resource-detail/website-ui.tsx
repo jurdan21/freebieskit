@@ -72,9 +72,26 @@ export default function DetailWebsiteUI({ id }: { id: string }) {
       <Breadcrumbs
         items={[
           { label: "Home", href: "/" },
-          { label: "Website UI Kit", href: "/resource/website-ui-kit" },
+          { label: "Website UI Kit", href: "/?tab=website-ui-kit#resource-section" },
           { label: resource.title }
         ]}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CreativeWork",
+            "name": resource.title,
+            "description": resource.overview,
+            "image": resource.image,
+            "url": `https://freebieskit.com/resource/website-ui-kit/${resource.id}`,
+            "author": {
+              "@type": "Organization",
+              "name": "Freebieskit"
+            }
+          })
+        }}
       />
       <div className="flex items-start justify-between mb-6">
         <h1 className="text-2xl md:text-3xl font-medium text-black">{resource.title}</h1>

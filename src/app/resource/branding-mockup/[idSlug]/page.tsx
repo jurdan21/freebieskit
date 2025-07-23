@@ -1,6 +1,38 @@
 import Header from "@/components/Header";
 import { Metadata } from "next";
 import BrandingMockup from "@/components/resource-detail/branding-mockup";
+import { createClient } from '@supabase/supabase-js';
+
+export async function generateStaticParams() {
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
+  const { data: category } = await supabase
+    .from('categories')
+    .select('id')
+    .eq('slug', 'branding-mockup')
+    .single();
+  if (!category) return [];
+  const { data, error } = await supabase
+    .from('resources')
+    .select('id, title')
+    .eq('category_id', category.id);
+  if (error || !data) return [];
+  function slugify(text: string) {
+    return text
+      .toString()
+      .toLowerCase()
+      .replace(/\s+/g, '-')
+      .replace(/[^\w-]+/g, '')
+      .replace(/--+/g, '-')
+      .replace(/^-+/, '')
+      .replace(/-+$/, '');
+  }
+  return data.map((r) => ({
+    idSlug: `${r.id}-${slugify(r.title)}`,
+  }));
+}
 
 export const metadata: Metadata = {
   title: "Branding Mockup - FreebiesKit",

@@ -70,7 +70,53 @@ export default function DetailIcons({ id }: { id: string }) {
 
   return (
     <div className="max-w-3xl mx-auto py-16 px-4">
-      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Icons", href: "/resource/icons" }, { label: resource.title }]} />
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Icons", href: "/?tab=icons#resource-section" }, { label: resource.title }]} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://freebieskit.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Icons",
+                "item": "https://freebieskit.com/?tab=icons#resource-section"
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": resource.title,
+                "item": `https://freebieskit.com/resource/icons/${resource.id}`
+              }
+            ]
+          })
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "CreativeWork",
+            "name": resource.title,
+            "description": resource.overview,
+            "image": resource.image,
+            "url": `https://freebieskit.com/resource/icons/${resource.id}`,
+            "author": {
+              "@type": "Organization",
+              "name": "Freebieskit"
+            }
+          })
+        }}
+      />
       <div className="flex items-start justify-between mb-6">
         <h1 className="text-lg sm:text-2xl md:text-3xl font-medium text-black">{resource.title}</h1>
         <div className="text-xs sm:text-sm text-gray-500 mt-1">by {resource.author} for {resource.platform}</div>

@@ -1,12 +1,6 @@
-import Header from "@/components/Header";
-import { Metadata } from "next";
-import DashboardUi from "@/components/resource-detail/dashboard-ui";
 import { createClient } from '@supabase/supabase-js';
-
-export const metadata: Metadata = {
-  title: "Dashboard UI Kit - FreebiesKit",
-  // ... tambahkan metadata lain jika perlu
-};
+import DetailThreeDAssets from "@/components/resource-detail/three-d-assets";
+import Header from "@/components/Header";
 
 export async function generateStaticParams() {
   const supabase = createClient(
@@ -16,7 +10,7 @@ export async function generateStaticParams() {
   const { data: category } = await supabase
     .from('categories')
     .select('id')
-    .eq('slug', 'dashboard-ui-kit')
+    .eq('slug', '3d-assets')
     .single();
   if (!category) return [];
   const { data, error } = await supabase
@@ -44,7 +38,7 @@ export default function Page({ params }: { params: { idSlug: string } }) {
   return (
     <>
       <Header />
-      <DashboardUi id={id} />
+      <DetailThreeDAssets id={id} />
     </>
   );
 } 

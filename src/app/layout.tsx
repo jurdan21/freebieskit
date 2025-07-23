@@ -26,6 +26,21 @@ export default function RootLayout({
         <link rel="icon" href="https://res.cloudinary.com/doihq9rxd/image/upload/v1752456843/Faviconn_wyapu1.svg" type="image/svg+xml" />
         <link rel="shortcut icon" href="https://res.cloudinary.com/doihq9rxd/image/upload/v1752456843/Faviconn_wyapu1.svg" type="image/svg+xml" />
         <meta name="google-site-verification" content="bejPZAYfp_9b7ogV1JyFmfr9yTGuy97F8ViQ3swi614" />
+        <meta name="description" content="Freebieskit is your source for free UI kits, mockups, icons, illustrations, templates, and more. Discover and download high-quality design resources for web, mobile, and creative projects. Curated for designers, developers, and creators." />
+        <meta property="og:title" content="Freebieskit – Free UI Kits, Mockups, Illustrations, and More" />
+        <meta property="og:description" content="Download high-quality design resources for your next project. Curated for designers and developers." />
+        <meta property="og:image" content="https://res.cloudinary.com/doihq9rxd/image/upload/v1752339664/Logo_slhoff.svg" />
+        <meta property="og:url" content="https://freebieskit.com/" />
+        <meta property="og:type" content="website" />
+        <script type="application/ld+json">{`
+          {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Freebieskit",
+            "url": "https://freebieskit.com/",
+            "description": "Freebieskit is your source for free UI kits, mockups, icons, illustrations, templates, and more. Discover and download high-quality design resources for web, mobile, and creative projects. Curated for designers, developers, and creators."
+          }
+        `}</script>
       </head>
       <body className={`${inter.className} antialiased`}>
         {children}

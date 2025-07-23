@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -17,7 +16,7 @@ interface Resource {
   download_link: string;
 }
 
-export default function DetailMobileUI({ id }: { id: string }) {
+export default function DetailDesignSystem({ id }: { id: string }) {
   const [resource, setResource] = useState<Resource | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -27,11 +26,11 @@ export default function DetailMobileUI({ id }: { id: string }) {
     async function fetchResource() {
       setLoading(true);
       setError(null);
-      // Ambil id kategori mobile-ui-kit
+      // Ambil id kategori design-system
       const { data: categories } = await supabase
         .from('categories')
         .select('id')
-        .eq('slug', 'mobile-ui-kit')
+        .eq('slug', 'design-system')
         .single();
       if (!categories) {
         setError('Category not found.');
@@ -69,13 +68,7 @@ export default function DetailMobileUI({ id }: { id: string }) {
 
   return (
     <div className="max-w-3xl mx-auto py-16 px-4">
-      <Breadcrumbs
-        items={[
-          { label: "Home", href: "/" },
-          { label: "Mobile UI Kit", href: "/?tab=mobile-ui-kit#resource-section" },
-          { label: resource.title }
-        ]}
-      />
+      <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Design System", href: "/?tab=design-system#resource-section" }, { label: resource.title }]} />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -92,14 +85,14 @@ export default function DetailMobileUI({ id }: { id: string }) {
               {
                 "@type": "ListItem",
                 "position": 2,
-                "name": "Mobile UI Kit",
-                "item": "https://freebieskit.com/?tab=mobile-ui-kit#resource-section"
+                "name": "Design System",
+                "item": "https://freebieskit.com/?tab=design-system#resource-section"
               },
               {
                 "@type": "ListItem",
                 "position": 3,
                 "name": resource.title,
-                "item": `https://freebieskit.com/resource/mobile-ui-kit/${resource.id}`
+                "item": `https://freebieskit.com/resource/design-system/${resource.id}`
               }
             ]
           })
@@ -114,7 +107,7 @@ export default function DetailMobileUI({ id }: { id: string }) {
             "name": resource.title,
             "description": resource.overview,
             "image": resource.image,
-            "url": `https://freebieskit.com/resource/mobile-ui-kit/${resource.id}`,
+            "url": `https://freebieskit.com/resource/design-system/${resource.id}`,
             "author": {
               "@type": "Organization",
               "name": "Freebieskit"
@@ -139,7 +132,7 @@ export default function DetailMobileUI({ id }: { id: string }) {
         <div className="text-gray-400 font-medium mb-1">Compatibility</div>
         <div className="text-base text-black">{resource.compatibility}</div>
       </div>
-      <a href={resource.download_link} target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-2 rounded-full bg-blue-600 text-white font-medium shadow hover:bg-blue-700 transition">Download Now</a>
+      <a href={resource.download_link} target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-2 rounded-full bg-blue-600 text-white font-medium shadow hover:bg-blue-700 transition">Go to Site</a>
     </div>
   );
 } 

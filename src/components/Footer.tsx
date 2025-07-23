@@ -17,12 +17,13 @@ const resourceCategories = [
   { key: "social-media", label: "Social Media" },
   { key: "motions", label: "Motions" },
   { key: "web-design-inspiration", label: "Web Design Inspiration" },
+  { key: "design-system", label: "Design System" },
 ];
 
 const navigation = [
   ["Mobile UI Kit", "Website UI Kit", "Dashboard UI Kit", "Device Mockup", "Icons"],
   ["Templates", "Presentations", "Fonts", "Illustrations", "3D Assets"],
-  ["Branding Mockup", "Social Media", "Motions", "Web Design Inspiration"]
+  ["Branding Mockup", "Social Media", "Motions", "Web Design Inspiration", "Design System"]
 ];
 const support = ["Contact", "Information", "Submit Asset"];
 const legal = ["Privacy", "Terms"];

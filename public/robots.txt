@@ -1,8 +1,9 @@
+# *
 User-agent: *
 Allow: /
-Disallow: /private/
 
-Sitemap: https://freebieskit.com/sitemap.xml
+# Host
+Host: https://www.freebieskit.com
 
-# Crawl delay (optional)
-Crawl-delay: 1 
+# Sitemaps
+Sitemap: https://www.freebieskit.com/sitemap.xml
