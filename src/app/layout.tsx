@@ -24,8 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <head>
-        <link rel="icon" href="https://res.cloudinary.com/doihq9rxd/image/upload/v1752456843/Faviconn_wyapu1.svg" type="image/svg+xml" />
-        <link rel="shortcut icon" href="https://res.cloudinary.com/doihq9rxd/image/upload/v1752456843/Faviconn_wyapu1.svg" type="image/svg+xml" />
+        {/* Hapus semua link favicon eksternal, biarkan Next.js ambil favicon.ico dari /public */}
         <meta name="google-site-verification" content="bejPZAYfp_9b7ogV1JyFmfr9yTGuy97F8ViQ3swi614" />
         <meta name="description" content="Freebieskit is your source for free UI kits, mockups, icons, illustrations, templates, and more. Discover and download high-quality design resources for web, mobile, and creative projects. Curated for designers, developers, and creators." />
         <meta property="og:title" content="Freebieskit – Free UI Kits, Mockups, Illustrations, and More" />
