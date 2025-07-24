@@ -33,15 +33,18 @@ export default function RootLayout({
         <meta property="og:image" content="https://res.cloudinary.com/doihq9rxd/image/upload/v1752339664/Logo_slhoff.svg" />
         <meta property="og:url" content="https://freebieskit.com/" />
         <meta property="og:type" content="website" />
-        <script type="application/ld+json">{`
-          {
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            "name": "Freebieskit",
-            "url": "https://freebieskit.com/",
-            "description": "Freebieskit is your source for free UI kits, mockups, icons, illustrations, templates, and more. Discover and download high-quality design resources for web, mobile, and creative projects. Curated for designers, developers, and creators."
-          }
-        `}</script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "Freebieskit",
+              "url": "https://freebieskit.com/",
+              "description": "Freebieskit is your source for free UI kits, mockups, icons, illustrations, templates, and more. Discover and download high-quality design resources for web, mobile, and creative projects. Curated for designers, developers, and creators."
+            })
+          }}
+        />
         {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-01BNDY8PPE"
