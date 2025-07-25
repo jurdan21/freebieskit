@@ -78,7 +78,7 @@ export default function Header() {
           Information
         </Link>
         {/* CTA */}
-        <Button href="mailto:hello@freebieskit.com" className="ml-4" size="small">Submit Asset</Button>
+        <Button href="https://tally.so/r/wAeBV0" className="ml-4" size="small" target="_blank" rel="noopener noreferrer">Submit Asset</Button>
       </nav>
       {/* Hamburger for mobile */}
       <button className="md:hidden p-2 ml-auto" onClick={() => setMobileNav((v) => !v)} aria-label="Open menu">
@@ -121,7 +121,7 @@ export default function Header() {
           <Link href="/information" className="font-inter text-description transition" style={{ color: "var(--color-black-base)", fontWeight: 400 }} onClick={() => setMobileNav(false)}>
             Information
           </Link>
-          <a href="mailto:hello@freebieskit.com" className="w-full px-5 py-3 rounded-full bg-gradient-to-r from-blue-500 to-blue-700 text-white font-medium shadow hover:from-blue-600 hover:to-blue-800 transition text-center block" onClick={() => setMobileNav(false)}>Submit Asset</a>
+          <a href="https://tally.so/r/wAeBV0" className="w-full px-5 py-3 rounded-full bg-gradient-to-r from-blue-500 to-blue-700 text-white font-medium shadow hover:from-blue-600 hover:to-blue-800 transition text-center block" target="_blank" rel="noopener noreferrer" onClick={() => setMobileNav(false)}>Submit Asset</a>
         </div>
       </nav>
     </header>

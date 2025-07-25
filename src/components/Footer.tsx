@@ -75,10 +75,16 @@ export default function Footer() {
                           <Link href="/information" className="text-white text-lg font-normal leading-8 hover:underline cursor-pointer">{item}</Link>
                         </li>
                       );
-                    } else if (item === "Contact" || item === "Submit Asset") {
+                    } else if (item === "Contact") {
                       return (
                         <li key={item}>
                           <a href="mailto:hello@freebieskit.com" className="text-white text-lg font-normal leading-8 hover:underline cursor-pointer">{item}</a>
+                        </li>
+                      );
+                    } else if (item === "Submit Asset") {
+                      return (
+                        <li key={item}>
+                          <a href="https://tally.so/r/wAeBV0" className="text-white text-lg font-normal leading-8 hover:underline cursor-pointer" target="_blank" rel="noopener noreferrer">{item}</a>
                         </li>
                       );
                     } else {
