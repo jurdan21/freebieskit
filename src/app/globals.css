@@ -62,4 +62,68 @@ body {
 .resource-tab-container {
   scrollbar-color: transparent transparent !important;
   scrollbar-width: none !important;
+  /* Tambah padding untuk mencegah tab terpotong */
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  /* Pastikan container bisa scroll dengan baik */
+  scroll-behavior: smooth;
+  /* Pastikan overflow horizontal berfungsi */
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* Fade-in animation untuk resource cards */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+/* Staggered animation untuk cards */
+.animate-fade-in:nth-child(1) { animation-delay: 0ms; }
+.animate-fade-in:nth-child(2) { animation-delay: 50ms; }
+.animate-fade-in:nth-child(3) { animation-delay: 100ms; }
+.animate-fade-in:nth-child(4) { animation-delay: 150ms; }
+.animate-fade-in:nth-child(5) { animation-delay: 200ms; }
+.animate-fade-in:nth-child(6) { animation-delay: 250ms; }
+.animate-fade-in:nth-child(7) { animation-delay: 300ms; }
+.animate-fade-in:nth-child(8) { animation-delay: 350ms; }
+.animate-fade-in:nth-child(9) { animation-delay: 400ms; }
+
+/* Smooth transition untuk tab switching */
+.resource-tab-container button {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Pastikan button tidak terpotong */
+  min-width: fit-content;
+  /* Pastikan button tidak terclip */
+  margin: 0.25rem 0;
+  /* Pastikan button bisa scroll */
+  flex-shrink: 0;
+}
+
+.resource-tab-container button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Loading animation untuk tab switching */
+@keyframes tabLoading {
+  0% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+  100% { opacity: 0.3; }
+}
+
+.tab-loading {
+  animation: tabLoading 1.5s ease-in-out infinite;
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import Button from "@/components/Button";
@@ -37,6 +37,20 @@ const menu = [
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [mobileNav, setMobileNav] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   return (
     <header className="w-full max-w-[1440px] mx-auto flex items-center justify-between px-4 md:px-10 py-4 bg-white font-inter border-b border-gray-200 relative">
       {/* Logo + Navigation Container */}
@@ -48,69 +62,136 @@ export default function Header() {
       {/* Desktop Navigation */}
       <nav className="hidden md:flex items-center gap-6">
         {/* Free Resource Dropdown */}
-        <div className="relative">
+        <div className="relative" ref={dropdownRef}>
           <button
-            className="flex items-center gap-1 font-inter text-description transition"
+            className="flex items-center gap-2 font-inter text-description transition-all duration-200 hover:text-blue-600 group"
             style={{ color: "var(--color-black-base)", fontWeight: 400 }}
             onClick={() => setOpen((v) => !v)}
-            onBlur={() => setTimeout(() => setOpen(false), 150)}
           >
             Free Resource
-            <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeWidth="2" d="M6 9l6 6 6-6"/></svg>
+            <svg 
+              width="16" 
+              height="16" 
+              fill="none" 
+              viewBox="0 0 24 24"
+              className={`transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+            >
+              <path stroke="currentColor" strokeWidth="2" d="M6 9l6 6 6-6"/>
+            </svg>
           </button>
           {open && menu[0].dropdown && (
-            <div className="absolute left-0 mt-2 w-40 bg-white rounded shadow-lg z-10 animate-fade-in">
-              {menu[0].dropdown.map((item) => (
-                <Link
-                  key={item.label}
-                  href={`/?tab=${resourceCategories.find(cat => cat.label === item.label)?.key}#resource-section`}
-                  className="block px-4 py-2 text-sm hover:bg-gray-100 transition font-inter text-description"
-                  style={{ color: "var(--color-black-base)", fontWeight: 400 }}
-                >
-                  {item.label}
-                </Link>
-              ))}
+            <div className="absolute left-0 mt-3 w-56 bg-white rounded-xl shadow-xl border border-gray-100 z-10 overflow-hidden">
+              <div className="py-2">
+                {menu[0].dropdown.map((item) => (
+                  <Link
+                    key={item.label}
+                    href={`/?tab=${resourceCategories.find(cat => cat.label === item.label)?.key}#resource-section`}
+                    className="block px-4 py-3 text-sm hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 font-inter text-description group/item"
+                    style={{ color: "var(--color-black-base)", fontWeight: 400 }}
+                    onClick={() => setOpen(false)}
+                  >
+                    <div className="flex items-center justify-between">
+                      <span>{item.label}</span>
+                      <svg 
+                        width="12" 
+                        height="12" 
+                        fill="none" 
+                        viewBox="0 0 24 24"
+                        className="opacity-0 group-hover/item:opacity-100 transition-opacity duration-200"
+                      >
+                        <path stroke="currentColor" strokeWidth="2" d="M9 18l6-6-6-6"/>
+                      </svg>
+                    </div>
+                  </Link>
+                ))}
+              </div>
             </div>
           )}
         </div>
         {/* Information */}
-        <Link href="/information" className="font-inter text-description transition" style={{ color: "var(--color-black-base)", fontWeight: 400 }}>
+        <Link href="/information" className="font-inter text-description transition-all duration-200 hover:text-blue-600" style={{ color: "var(--color-black-base)", fontWeight: 400 }}>
           Information
         </Link>
         {/* CTA */}
         <Button href="https://tally.so/r/wAeBV0" className="ml-4" size="small" target="_blank" rel="noopener noreferrer">Submit Asset</Button>
       </nav>
       {/* Hamburger for mobile */}
-      <button className="md:hidden p-2 ml-auto" onClick={() => setMobileNav((v) => !v)} aria-label="Open menu">
-        <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <button 
+        className="md:hidden p-2 ml-auto relative z-50" 
+        onClick={() => setMobileNav((v) => !v)} 
+        aria-label="Open menu"
+      >
+        <div className="w-6 h-6 flex flex-col justify-center items-center">
+          <span className={`block w-5 h-0.5 bg-black transition-all duration-300 ${mobileNav ? 'rotate-45 translate-y-1' : '-translate-y-1'}`}></span>
+          <span className={`block w-5 h-0.5 bg-black transition-all duration-300 ${mobileNav ? 'opacity-0' : 'opacity-100'}`}></span>
+          <span className={`block w-5 h-0.5 bg-black transition-all duration-300 ${mobileNav ? '-rotate-45 -translate-y-1' : 'translate-y-1'}`}></span>
+        </div>
       </button>
+      
       {/* Mobile Navigation Overlay */}
       {mobileNav && (
-        <div className="fixed inset-0 z-40 bg-black bg-opacity-40" onClick={() => setMobileNav(false)} />
+        <div 
+          className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm transition-opacity duration-300" 
+          onClick={() => setMobileNav(false)} 
+        />
       )}
-      <nav className={`fixed top-0 right-0 z-50 h-full w-64 bg-white shadow-lg flex flex-col gap-6 p-8 transform transition-transform duration-300 md:hidden ${mobileNav ? 'translate-x-0' : 'translate-x-full'}`}>
-        <button className="self-end mb-8" onClick={() => setMobileNav(false)} aria-label="Close menu">
-          <svg width="28" height="28" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/></svg>
-        </button>
-        <div className="flex flex-col gap-4">
-          <div className="relative">
+      
+      {/* Mobile Navigation Sidebar */}
+      <nav className={`fixed top-0 right-0 z-50 h-full w-80 bg-white shadow-2xl flex flex-col transform transition-all duration-300 ease-out md:hidden ${
+        mobileNav ? 'translate-x-0' : 'translate-x-full'
+      }`}>
+        {/* Header */}
+        <div className="flex items-center justify-between p-6 border-b border-gray-100">
+          <div className="flex items-center gap-2">
+            <Image 
+              src="https://res.cloudinary.com/doihq9rxd/image/upload/v1752339664/Logo_slhoff.svg" 
+              alt="Freebieskit Logo" 
+              width={100} 
+              height={25} 
+            />
+          </div>
+          <button 
+            className="p-2 rounded-full hover:bg-gray-100 transition-colors duration-200" 
+            onClick={() => setMobileNav(false)} 
+            aria-label="Close menu"
+          >
+            <svg width="20" height="20" fill="none" viewBox="0 0 24 24">
+              <path stroke="currentColor" strokeWidth="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+        
+        {/* Navigation Items */}
+        <div className="flex-1 px-6 py-8 space-y-6">
+          {/* Free Resource Dropdown */}
+          <div className="space-y-3">
             <button
-              className="flex items-center gap-1 font-inter text-description transition"
-              style={{ color: "var(--color-black-base)", fontWeight: 400 }}
+              className="flex items-center justify-between w-full p-4 rounded-xl hover:bg-gray-50 transition-all duration-200 group"
               onClick={() => setOpen((v) => !v)}
             >
-              Free Resource
-              <svg width="16" height="16" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeWidth="2" d="M6 9l6 6 6-6"/></svg>
+              <span className="font-medium text-gray-900">Free Resource</span>
+              <svg 
+                width="16" 
+                height="16" 
+                fill="none" 
+                viewBox="0 0 24 24"
+                className={`transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+              >
+                <path stroke="currentColor" strokeWidth="2" d="M6 9l6 6 6-6"/>
+              </svg>
             </button>
+            
             {open && menu[0].dropdown && (
-              <div className="absolute left-0 mt-2 w-40 bg-white rounded shadow-lg z-50 animate-fade-in">
+              <div className="space-y-1 pl-4">
                 {menu[0].dropdown.map((item) => (
                   <Link
                     key={item.label}
                     href={`/?tab=${resourceCategories.find(cat => cat.label === item.label)?.key}#resource-section`}
-                    className="block px-4 py-2 text-sm hover:bg-gray-100 transition font-inter text-description"
-                    style={{ color: "var(--color-black-base)", fontWeight: 400 }}
-                    onClick={() => setMobileNav(false)}
+                    className="block p-3 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-all duration-200 text-sm text-gray-600"
+                    onClick={() => {
+                      setMobileNav(false);
+                      setOpen(false);
+                    }}
                   >
                     {item.label}
                   </Link>
@@ -118,10 +199,28 @@ export default function Header() {
               </div>
             )}
           </div>
-          <Link href="/information" className="font-inter text-description transition" style={{ color: "var(--color-black-base)", fontWeight: 400 }} onClick={() => setMobileNav(false)}>
+          
+          {/* Information Link */}
+          <Link 
+            href="/information" 
+            className="block p-4 rounded-xl hover:bg-gray-50 transition-all duration-200 text-gray-900 font-medium"
+            onClick={() => setMobileNav(false)}
+          >
             Information
           </Link>
-          <a href="https://tally.so/r/wAeBV0" className="w-full px-5 py-3 rounded-full bg-gradient-to-r from-blue-500 to-blue-700 text-white font-medium shadow hover:from-blue-600 hover:to-blue-800 transition text-center block" target="_blank" rel="noopener noreferrer" onClick={() => setMobileNav(false)}>Submit Asset</a>
+        </div>
+        
+        {/* Footer */}
+        <div className="p-6 border-t border-gray-100">
+          <a 
+            href="https://tally.so/r/wAeBV0" 
+            className="w-full px-6 py-4 rounded-xl bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium shadow-lg hover:from-blue-600 hover:to-blue-700 transition-all duration-200 text-center block" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            onClick={() => setMobileNav(false)}
+          >
+            Submit Asset
+          </a>
         </div>
       </nav>
     </header>

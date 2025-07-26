@@ -66,7 +66,7 @@ export default function DetailPresentations({ id }: { id: string }) {
 
   if (loading) return <div className="py-16 text-center text-gray-500">Loading...</div>;
   if (error || !resource) return <div className="py-16 text-center text-gray-500">{error || 'Resource not found.'}</div>;
-
+  
   return (
     <div className="max-w-3xl mx-auto py-16 px-4">
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Presentations", href: "/?tab=presentations#resource-section" }, { label: resource.title }]} />

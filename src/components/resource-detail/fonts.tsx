@@ -67,7 +67,7 @@ export default function DetailFonts({ id }: { id: string }) {
 
   if (loading) return <div className="py-16 text-center text-gray-500">Loading...</div>;
   if (error || !resource) return <div className="py-16 text-center text-gray-500">{error || 'Resource not found.'}</div>;
-
+  
   return (
     <div className="max-w-3xl mx-auto py-10 sm:py-14 md:py-16 px-4 sm:px-6 md:px-8">
       <Breadcrumbs items={[{ label: "Home", href: "/" }, { label: "Fonts", href: "/?tab=fonts#resource-section" }, { label: resource.title }]} />

@@ -11,6 +11,7 @@ export default function Term() {
       <p className="mb-6 text-sm sm:text-base leading-relaxed">
         By using this website, you agree to the terms below. We&apos;ll keep it simple and clear.
       </p>
+      
       <section className="mb-6">
         <h2 className="text-base sm:text-lg font-semibold mb-2 text-gray-700">1. Using the Freebies</h2>
         <p className="mb-2 text-sm sm:text-base">Everything you see on Freebieskit is free to download. But keep in mind:</p>
@@ -40,6 +41,24 @@ export default function Term() {
       <section className="mb-6">
         <h2 className="text-base sm:text-lg font-semibold mb-2 text-gray-700">4. Updates to These Terms</h2>
         <p className="mb-2 text-sm sm:text-base">We may update these terms from time to time — no spammy alerts, just a quiet refresh. Feel free to check back whenever you&apos;d like.</p>
+      </section>
+      
+      <section className="mb-6">
+        <h2 className="text-base sm:text-lg font-semibold mb-2 text-gray-700">Disclaimer on Asset Ownership and Distribution</h2>
+        <div className="bg-gray-100 rounded-lg px-4 sm:px-6 py-3 sm:py-4 mb-4 text-sm sm:text-base border-l-4 border-gray-300">
+          <p className="mb-4 leading-relaxed">
+            Please note that Freebieskit does not sell or redistribute any design assets. Our platform solely acts as a curated directory to help promote and showcase high-quality, free design resources created by the community.
+          </p>
+          <p className="mb-4 leading-relaxed">
+            All assets featured on Freebieskit are directly linked to the original source — whether that's Figma Community, your website, or another trusted platform. We do not host or claim ownership over any files unless explicitly stated.
+          </p>
+          <p className="mb-4 leading-relaxed">
+            If you are the original creator of a listed asset and would prefer it not to be showcased on Freebieskit, simply reach out to our team at <a href="mailto:hello@freebieskit.com" className="text-blue-600 underline">hello@freebieskit.com</a>, and we'll promptly remove it from our site.
+          </p>
+          <p className="leading-relaxed">
+            We respect creators and their rights, and aim to support visibility — not interfere with ownership.
+          </p>
+        </div>
       </section>
     </section>
   );

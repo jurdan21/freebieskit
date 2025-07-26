@@ -42,6 +42,25 @@ export default function Information() {
           Thanks for being here. If you have ideas, suggestions, or just want to say hi <a href="mailto:hello@freebieskit.com" className="text-blue-600 underline">reach out anytime</a>.
         </p>
       </section>
+      
+      <section className="mb-8 md:mb-12">
+        <h2 className="text-xl font-medium mb-2">Disclaimer on Asset Ownership and Distribution</h2>
+        <div className="bg-gray-100 rounded-lg px-4 sm:px-6 py-3 sm:py-4 mb-4 text-sm sm:text-base border-l-4 border-gray-300">
+          <p className="mb-4 leading-relaxed">
+            Please note that Freebieskit does not sell or redistribute any design assets. Our platform solely acts as a curated directory to help promote and showcase high-quality, free design resources created by the community.
+          </p>
+          <p className="mb-4 leading-relaxed">
+            All assets featured on Freebieskit are directly linked to the original source — whether that's Figma Community, your website, or another trusted platform. We do not host or claim ownership over any files unless explicitly stated.
+          </p>
+          <p className="mb-4 leading-relaxed">
+            If you are the original creator of a listed asset and would prefer it not to be showcased on Freebieskit, simply reach out to our team at <a href="mailto:hello@freebieskit.com" className="text-blue-600 underline">hello@freebieskit.com</a>, and we'll promptly remove it from our site.
+          </p>
+          <p className="leading-relaxed">
+            We respect creators and their rights, and aim to support visibility — not interfere with ownership.
+          </p>
+        </div>
+      </section>
+      
       <section className="mb-8 md:mb-12">
         <h2 className="text-xl font-medium mb-2">Sponsorships</h2>
         <p className="mb-4 text-base leading-relaxed">
