@@ -1,0 +1,26 @@
+{
+  "redirects": [
+    {
+      "source": "https://www.freebieskit.com/:path*",
+      "destination": "https://freebieskit.com/:path*",
+      "permanent": true,
+      "statusCode": 301
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "index, follow"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
+      ]
+    }
+  ],
+  "trailingSlash": false
+}
