@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://www.freebieskit.com
+Host: https://freebieskit.com
 
 # Sitemaps
-Sitemap: https://www.freebieskit.com/sitemap.xml
+Sitemap: https://freebieskit.com/sitemap.xml
