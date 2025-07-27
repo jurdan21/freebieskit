@@ -1,12 +1,4 @@
 {
-  "redirects": [
-    {
-      "source": "https://www.freebieskit.com/:path*",
-      "destination": "https://freebieskit.com/:path*",
-      "permanent": true,
-      "statusCode": 301
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",
