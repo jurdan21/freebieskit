@@ -2,7 +2,9 @@ import React from "react";
 
 export default function Privacy() {
   return (
-    <section className="max-w-2xl mx-auto px-4 sm:px-6 md:px-8 py-10 sm:py-14 md:py-16 text-black font-inter">
+    <>
+      {/* Hapus Head component karena sudah menggunakan Next.js Metadata API */}
+      <section className="max-w-2xl mx-auto px-4 sm:px-6 md:px-8 py-10 sm:py-14 md:py-16 text-black font-inter">
       <h1 className="text-3xl md:text-4xl font-semibold mb-6">Privacy Policy</h1>
       <div className="text-gray-500 font-medium mb-6 text-sm sm:text-base">Last updated: [14-06-2025]</div>
       <p className="mb-6 text-sm sm:text-base leading-relaxed">
@@ -49,5 +51,6 @@ export default function Privacy() {
         <p className="mb-2 text-sm sm:text-base">Just email us at <a href="mailto:hello@freebieskit.com" className="text-blue-600 underline">hello@freebieskit.com</a> and we’ll help you out.</p>
       </section>
     </section>
+    </>
   );
-} 
+}

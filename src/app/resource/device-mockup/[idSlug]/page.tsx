@@ -40,7 +40,8 @@ export async function generateStaticParams() {
   }));
 }
 
-export const metadata: Metadata = {
+export async function generateMetadata({ params }: { params: { idSlug: string } }): Promise<Metadata> {
+  return {
   title: "Device Mockup - FreebiesKit",
   description: "A curated collection of free device mockups for designers. Download smartphone, tablet, laptop, and other device mockups for your presentations and projects.",
   keywords: "device mockup, smartphone mockup, laptop mockup, free device mockup, mockup free, download device mockup",
@@ -54,12 +55,12 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL("https://freebieskit.com"),
   alternates: {
-    canonical: "https://freebieskit.com/resource/device-mockup",
+    canonical: `https://freebieskit.com/resource/device-mockup/${params.idSlug}`,
   },
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://freebieskit.com/resource/device-mockup",
+    url: `https://freebieskit.com/resource/device-mockup/${params.idSlug}`,
     siteName: "FreebiesKit",
     title: "Device Mockup - FreebiesKit",
     description: "A curated collection of free device mockups for designers. Download smartphone, tablet, laptop, and other device mockups for your presentations and projects.",
@@ -96,7 +97,7 @@ export const metadata: Metadata = {
       "@context": "https://schema.org",
       "@type": "WebPage",
       "name": "Device Mockup - FreebiesKit",
-      "url": "https://freebieskit.com/resource/device-mockup",
+      "url": `https://freebieskit.com/resource/device-mockup/${params.idSlug}`,
       "description": "A curated collection of free device mockups for designers.",
       "isPartOf": {
         "@type": "WebSite",
@@ -105,7 +106,8 @@ export const metadata: Metadata = {
       }
     }),
   },
-};
+  };
+}
 
 export default function Page({ params }: { params: { idSlug: string } }) {
   const id = params.idSlug.split('-')[0];
@@ -115,4 +117,4 @@ export default function Page({ params }: { params: { idSlug: string } }) {
       <DeviceMockup id={id} />
     </>
   );
-} 
+}
