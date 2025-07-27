@@ -92,11 +92,13 @@ export default function ResourceSection() {
   const [resources, setResources] = useState<Resource[]>([]);
   const [isPreloading, setIsPreloading] = useState(false);
   const [isTabLoading, setIsTabLoading] = useState(false);
+  const [isInitialLoading, setIsInitialLoading] = useState(true);
   const loaderRef = useRef<HTMLDivElement | null>(null);
 
   // Fetch categories dari Supabase saat mount
   useEffect(() => {
     async function fetchCategories() {
+      setIsInitialLoading(true);
       const { data, error } = await supabase
         .from('categories')
         .select('id, name, slug')
@@ -112,34 +114,45 @@ export default function ResourceSection() {
   // Fetch resources dari Supabase setiap activeTab berubah
   useEffect(() => {
     async function fetchResources() {
-      setIsTabLoading(true);
+      // Jika bukan initial loading, set tab loading
+      if (!isInitialLoading) {
+        setIsTabLoading(true);
+      }
+      
       // Cari id kategori dari slug
       const selectedCategory = categories.find(cat => cat.slug === activeTab);
       if (!selectedCategory) {
         setResources([]);
         setIsTabLoading(false);
+        setIsInitialLoading(false);
         return;
       }
+      
       const { data, error } = await supabase
         .from('resources')
         .select('*')
         .eq('category_id', selectedCategory.id)
         .order('id', { ascending: false });
+        
       if (!error && data) {
         setResources(data);
       } else {
         setResources([]);
       }
+      
       setVisibleCount(9); // Reset visible count untuk tab baru
+      
       // Delay sedikit untuk smooth transition
       setTimeout(() => {
         setIsTabLoading(false);
-      }, 300);
+        setIsInitialLoading(false);
+      }, isInitialLoading ? 800 : 300); // Delay lebih lama untuk initial load
     }
+    
     if (activeTab && categories.length > 0) {
       fetchResources();
     }
-  }, [activeTab, categories]);
+  }, [activeTab, categories, isInitialLoading]);
 
   useEffect(() => {
     const tabKey = searchParams.get("tab");
@@ -224,15 +237,23 @@ export default function ResourceSection() {
       </div>
       {/* List Resource */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-        {isTabLoading ? (
-          // Loading state untuk tab switching
+        {(isInitialLoading || isTabLoading) ? (
+          // Loading state untuk initial load dan tab switching
           <>
             {Array.from({ length: 9 }).map((_, idx) => (
-              <ResourceSkeleton key={`tab-loading-${idx}`} />
+              <ResourceSkeleton key={`loading-${idx}`} />
             ))}
           </>
         ) : visibleResources.length === 0 ? (
-          <div className="col-span-3 text-center text-gray-400 py-8">No resources found.</div>
+          <div className="col-span-3 text-center text-gray-400 py-8">
+            <div className="flex flex-col items-center space-y-3">
+              <svg className="w-16 h-16 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              <div className="text-lg font-medium text-gray-500">No resources found</div>
+              <div className="text-sm text-gray-400">Try selecting a different category or check back later</div>
+            </div>
+          </div>
         ) : (
           <>
             {/* Existing resources */}
@@ -265,4 +286,4 @@ export default function ResourceSection() {
       )}
     </section>
   );
-} 
+}
