@@ -56,7 +56,7 @@ export default function Header() {
       {/* Logo + Navigation Container */}
       <div className="flex items-center gap-[60px]">
         <Link href="/" className="flex items-center gap-2" style={{ color: "var(--color-black-base)", fontWeight: 400 }}>
-          <Image src="https://res.cloudinary.com/doihq9rxd/image/upload/v1752339664/Logo_slhoff.svg" alt="Freebieskit Logo" width={128} height={32} />
+          <Image src="/Logo header.svg" alt="FreebiesKit - Free Design Assets and UI Kits" width={128} height={32} priority />
         </Link>
       </div>
       {/* Desktop Navigation */}
@@ -144,8 +144,8 @@ export default function Header() {
         <div className="flex items-center justify-between p-6 border-b border-gray-100">
           <div className="flex items-center gap-2">
             <Image 
-              src="https://res.cloudinary.com/doihq9rxd/image/upload/v1752339664/Logo_slhoff.svg" 
-              alt="Freebieskit Logo" 
+              src="/Logo header.svg" 
+              alt="FreebiesKit - Free Design Assets and UI Kits" 
               width={100} 
               height={25} 
             />
@@ -225,4 +225,4 @@ export default function Header() {
       </nav>
     </header>
   );
-} 
+}

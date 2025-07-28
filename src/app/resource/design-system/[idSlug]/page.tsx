@@ -1,6 +1,8 @@
 import Header from "@/components/Header";
 import DetailDesignSystem from "@/components/resource-detail/design-system";
 import { createClient } from '@supabase/supabase-js';
+import { Metadata } from "next";
+import { generateResourceMetadata } from '@/lib/generateResourceMetadata';
 
 export async function generateStaticParams() {
   const supabase = createClient(
@@ -33,6 +35,16 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({ params }: { params: { idSlug: string } }): Promise<Metadata> {
+  return generateResourceMetadata({
+    idSlug: params.idSlug,
+    categorySlug: 'design-system',
+    categoryDisplayName: 'Design System',
+    defaultDescription: 'A curated collection of free design systems and UI kits. Download comprehensive design systems for consistent and scalable design projects.',
+    keywords: 'free design system, design system free, ui kit, design kit, component library, design tokens'
+  });
+}
+
 export default function Page({ params }: { params: { idSlug: string } }) {
   const id = params.idSlug.split('-')[0];
   return (
@@ -41,4 +53,4 @@ export default function Page({ params }: { params: { idSlug: string } }) {
       <DetailDesignSystem id={id} />
     </>
   );
-} 
+}

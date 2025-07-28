@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     description: "Discover thousands of free design assets: UI kits, mockups, icons, fonts, illustrations, and templates. Download instantly, no registration required.",
     images: [
       {
-        url: "/og-image.svg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "FreebiesKit - Free Design Assets",
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     creator: "@freebieskit",
     title: "FreebiesKit - The Largest Free Design Asset Collection",
     description: "Discover thousands of free design assets: UI kits, mockups, icons, fonts, illustrations, and templates.",
-    images: ["/og-image.svg"],
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
@@ -55,23 +55,8 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    google: "your-google-verification-code", // Replace with your Google Search Console verification code
-  },
-  other: {
-    "application/ld+json": JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "WebSite",
-      "name": "FreebiesKit",
-      "url": "https://freebieskit.com",
-      "description": "The largest free design asset collection for designers and developers worldwide.",
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": "https://freebieskit.com/search?q={search_term_string}",
-        "query-input": "required name=search_term_string"
-      }
-    }),
-  },
+
+
 };
 
 export default function Home() {

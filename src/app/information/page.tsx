@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     description: "Comprehensive information about FreebiesKit, the largest curated platform for free design assets for designers and developers worldwide.",
     images: [
       {
-        url: "/og-image.svg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Information - FreebiesKit",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     creator: "@freebieskit",
     title: "Information - FreebiesKit",
     description: "Comprehensive information about FreebiesKit, the largest curated platform for free design assets for designers and developers worldwide.",
-    images: ["/og-image.svg"],
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
@@ -76,4 +76,4 @@ export default function InformationPage() {
       <Information />
     </>
   );
-} 
+}

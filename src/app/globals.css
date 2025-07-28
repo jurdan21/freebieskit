@@ -1,5 +1,79 @@
 @import "tailwindcss";
 
+/* Critical CSS untuk above-the-fold */
+.critical-above-fold {
+  font-display: swap;
+  contain: layout style paint;
+}
+
+/* Inline critical styles untuk hero section */
+.hero-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding-top: 4rem;
+}
+
+@media (min-width: 768px) {
+  .hero-section {
+    padding-top: 5.75rem;
+  }
+}
+
+.hero-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #000;
+}
+
+@media (min-width: 640px) {
+  .hero-title {
+    font-size: 2.25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: 3.75rem;
+  }
+}
+
+.hero-description {
+  font-size: 1rem;
+  color: #6b7280;
+  max-width: 100%;
+}
+
+@media (min-width: 640px) {
+  .hero-description {
+    font-size: 1.125rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-description {
+    font-size: 1.5rem;
+    max-width: 36rem;
+  }
+}
+
+/* Optimize animations untuk accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in {
+    animation: none;
+  }
+  .resource-tab-container button {
+    transition: none;
+  }
+  .tab-loading {
+    animation: none;
+  }
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;

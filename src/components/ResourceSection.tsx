@@ -64,9 +64,14 @@ const ResourceCard = ({ res, activeTab, idx }: { res: Resource; activeTab: strin
     >
       <Image
         src={res.image}
-        alt={res.title}
+        alt={`${res.title} - Free ${activeTab.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())} Design Resource by ${res.author} | Download for Figma, Sketch, Adobe XD`}
         width={400}
         height={300}
+        loading={idx < 3 ? "eager" : "lazy"}
+        priority={idx < 3}
+        placeholder="blur"
+        blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjNmNGY2Ii8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OTk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkxvYWRpbmcuLi48L3RleHQ+PC9zdmc+"
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         className="w-full aspect-[4/3] object-cover rounded-[18px] sm:rounded-[24px] transition-transform duration-300 group-hover:scale-105"
       />
       <div className="flex items-center justify-between pt-3 pb-2 md:pt-4 md:pb-3">

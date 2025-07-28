@@ -41,7 +41,7 @@ export default function Footer() {
           {/* Logo & Navigation */}
           <div className="flex-1 min-w-[180px] mb-8 md:mb-0">
             <div className="flex items-center mb-8 md:mb-10">
-              <Image src="https://res.cloudinary.com/doihq9rxd/image/upload/v1752426336/logo_white_bbwzbb.svg" alt="Freebieskit Logo" width={140} height={32} className="w-[120px] md:w-[180px] h-auto" />
+              <Image src="/Logo Footer.svg" alt="FreebiesKit - Free Design Assets and UI Kits" width={140} height={32} className="w-[120px] md:w-[180px] h-auto" />
             </div>
             <div className="flex flex-col md:flex-row gap-8 md:gap-20">
               {/* Navigation */}
@@ -122,4 +122,4 @@ export default function Footer() {
       </div>
     </footer>
   );
-} 
+}

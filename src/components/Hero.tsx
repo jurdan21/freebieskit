@@ -3,32 +3,32 @@ import Image from "next/image";
 const images = [
   {
     src: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img1_f1tauz.webp",
-    alt: "img 1",
-    href: "#", // ganti dengan link yang diinginkan
+    alt: "Free UI Kit Design Collection - Modern Website Interface Components and Dashboard Templates for Figma, Sketch, and Adobe XD",
+    href: "/?tab=website-ui-kit#resource-section",
   },
   {
     src: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img2_omuxkl.webp",
-    alt: "img 2",
-    href: "#",
+    alt: "Free Device Mockup Templates - iPhone, MacBook, and Branding Mockups for Presentation and Portfolio",
+    href: "/?tab=device-mockup#resource-section",
   },
   {
     src: "https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img3_gr2ez2.webp",
-    alt: "img 3",
-    href: "#",
+    alt: "Free Design Assets Collection - Premium Icons, Vector Illustrations, and Graphic Elements for Creative Projects",
+    href: "/?tab=icons#resource-section",
   },
 ];
 
 export default function Hero() {
   return (
-    <section className="w-full flex flex-col items-center max-w-[1440px] mx-auto pt-16 md:pt-[92px]">
+    <section className="hero-section critical-above-fold">
       <div className="flex flex-col gap-8 w-full md:w-3/4 px-4">
-        <h1 className="text-2xl sm:text-4xl md:text-6xl font-medium leading-tight text-black">
+        <h1 className="hero-title">
           <span className="italic">Free</span> UI Kits, Mockups,<br />
           Illustrations, and More
         </h1>
         <div className="flex flex-col md:flex-row md:items-end gap-2 md:gap-8">
-          <p className="text-base sm:text-lg md:text-2xl text-gray-500 max-w-full md:max-w-xl">
-            Freebieskit is your all in one library of 100% free design resources curated from trusted platforms.
+          <p className="hero-description">
+            FreebiesKit is your all-in-one library of 100% free design resources curated from trusted platforms worldwide.
           </p>
           <span className="text-base sm:text-lg text-black md:ml-auto mt-2 md:mt-0">✴ Curated for Creators</span>
         </div>
@@ -67,4 +67,4 @@ export default function Hero() {
       </div>
     </section>
   );
-} 
+}
