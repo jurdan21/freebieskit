@@ -13,7 +13,6 @@ const nextConfig = {
   compress: true,
   poweredByHeader: false,
   experimental: {
-    optimizeCss: true,
     optimizePackageImports: ['lucide-react'],
   },
   trailingSlash: false,
