@@ -1,3 +1,4 @@
+// Edit file ini untuk mengubah konfigurasi sitemap
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
   siteUrl: 'https://freebieskit.com',
