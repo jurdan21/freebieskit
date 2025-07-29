@@ -87,6 +87,24 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="google-site-verification" content="bejPZAYfp_9b7ogV1JyFmfr9yTGuy97F8ViQ3swi614" />
         
+        {/* Explicit Open Graph meta tags */}
+        <meta property="og:title" content="Freebieskit – Free UI Kits, Mockups, Illustrations, and More" />
+        <meta property="og:description" content="Download high-quality design resources for your next project. Curated for designers and developers." />
+        <meta property="og:image" content="https://freebieskit.com/og-image.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:url" content="https://freebieskit.com" />
+        <meta property="og:site_name" content="FreebiesKit" />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="en_US" />
+        
+        {/* Twitter Card meta tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Freebieskit – Free UI Kits, Mockups, Illustrations, and More" />
+        <meta name="twitter:description" content="Download high-quality design resources for your next project. Curated for designers and developers." />
+        <meta name="twitter:image" content="https://freebieskit.com/og-image.png" />
+        <meta name="twitter:image:alt" content="FreebiesKit - Free Design Assets" />
+        
         {/* Preload critical resources */}
         <link rel="preload" href="/og-image.png" as="image" type="image/png" />
         <link rel="preload" href="https://res.cloudinary.com/doihq9rxd/image/upload/v1752339647/img1_f1tauz.webp" as="image" type="image/webp" />
