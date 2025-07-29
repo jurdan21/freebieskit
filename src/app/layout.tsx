@@ -87,12 +87,16 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="google-site-verification" content="bejPZAYfp_9b7ogV1JyFmfr9yTGuy97F8ViQ3swi614" />
         
+        {/* Facebook App ID - Required by Facebook Sharing Debugger */}
+        <meta property="fb:app_id" content="1234567890123456" />
+        
         {/* Explicit Open Graph meta tags */}
         <meta property="og:title" content="Freebieskit – Free UI Kits, Mockups, Illustrations, and More" />
         <meta property="og:description" content="Download high-quality design resources for your next project. Curated for designers and developers." />
         <meta property="og:image" content="https://freebieskit.com/og-image.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content="FreebiesKit - Free Design Assets" />
         <meta property="og:url" content="https://freebieskit.com" />
         <meta property="og:site_name" content="FreebiesKit" />
         <meta property="og:type" content="website" />
