@@ -8,7 +8,7 @@ export default function DetailWebDesignInspiration({ id }: { id: string }) {
       id={id}
       categorySlug="web-design-inspiration"
       categoryDisplayName="Web Design Inspiration"
-      buttonText="Download Now"
+      buttonText="Visit Website"
       altTextSuffix=" Web Design"
     />
   );
