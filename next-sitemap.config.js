@@ -3,7 +3,7 @@
 module.exports = {
   siteUrl: 'https://freebieskit.com',
   generateRobotsTxt: true,
-  changefreq: 'monthly',
+  changefreq: 'weekly',
   priority: 0.7,
   sitemapSize: 5000,
   exclude: ['/api/*', '/admin/*', '/_next/*'],
@@ -46,7 +46,7 @@ module.exports = {
     try {
       console.log('📡 Fetching resources from Supabase...')
       
-      // Fetch all resources with images
+      // Fetch ALL resources with images - hapus limit 50
       const { data: resources, error } = await supabase
         .from('resources')
         .select(`
@@ -60,7 +60,6 @@ module.exports = {
           )
         `)
         .not('image', 'is', null)
-        .limit(50) // Reasonable limit for sitemap
         .order('created_at', { ascending: false })
       
       if (error) {
@@ -76,11 +75,6 @@ module.exports = {
           const categorySlug = resource.categories?.slug
           const resourcePath = `/resource/${categorySlug}/${resourceSlug}`
           
-          const imageTitle = resource.title
-          const imageCaption = resource.overview 
-            ? `${resource.title} - ${resource.overview.substring(0, 100)}${resource.overview.length > 100 ? '...' : ''}`
-            : `Free ${resource.title} for download`
-          
           console.log(`📄 Added: ${resourcePath}`)
            
            // Only add if image URL exists and categorySlug is valid
@@ -91,9 +85,11 @@ module.exports = {
                priority: 0.9,
                lastmod: new Date(resource.created_at).toISOString(),
                images: [{
-                  loc: { href: resource.image.trim() },
+                  loc: resource.image.trim(),
                   title: resource.title || '',
-                  caption: resource.description || ''
+                  caption: resource.overview ? 
+                    `${resource.title} - ${resource.overview.substring(0, 150)}${resource.overview.length > 150 ? '...' : ''}` :
+                    `Free ${resource.title} for download`
                 }],
              }
              
@@ -101,6 +97,23 @@ module.exports = {
            }
         })
       }
+
+      // Tambahkan halaman kategori
+      const { data: categories } = await supabase
+        .from('categories')
+        .select('slug')
+      
+      if (categories) {
+        categories.forEach((category) => {
+          additionalPaths.push({
+            loc: `/resource/${category.slug}`,
+            changefreq: 'weekly',
+            priority: 0.8,
+            lastmod: new Date().toISOString(),
+          })
+        })
+      }
+      
     } catch (error) {
       console.error('❌ Error fetching resources for sitemap:', error)
     }
@@ -127,30 +140,13 @@ module.exports = {
         lastmod: new Date().toISOString(),
       }
     }
-    // Halaman detail resource dengan images
+    // Halaman detail resource
     if (path.match(/\/resource\/[^/]+\/[^/]+$/)) {
-      try {
-        // Extract resource ID from path
-        const pathParts = path.split('/');
-        const resourceSlug = pathParts[pathParts.length - 1];
-        const resourceId = resourceSlug.split('-')[0];
-        
-        // Simple approach: try to get image from a global cache or use a placeholder
-        // For now, we'll return without images to avoid errors
-        return {
-          loc: path,
-          changefreq: 'weekly',
-          priority: 0.9,
-          lastmod: new Date().toISOString(),
-        }
-      } catch (error) {
-        console.error('Error in transform for resource path:', error);
-        return {
-          loc: path,
-          changefreq: 'weekly',
-          priority: 0.9,
-          lastmod: new Date().toISOString(),
-        }
+      return {
+        loc: path,
+        changefreq: 'weekly',
+        priority: 0.9,
+        lastmod: new Date().toISOString(),
       }
     }
     // Halaman informasi penting

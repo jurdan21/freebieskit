@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     description: "FreebiesKit Privacy Policy. Learn how we collect, use, and protect your personal information as you use our platform.",
     images: [
       {
-        url: "/og-image.svg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Privacy Policy - FreebiesKit",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     creator: "@freebieskit",
     title: "Privacy Policy - FreebiesKit",
     description: "FreebiesKit Privacy Policy. Learn how we collect, use, and protect your personal information as you use our platform.",
-    images: ["/og-image.svg"],
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
@@ -76,4 +76,4 @@ export default function PrivacyPage() {
       <Privacy />
     </>
   );
-} 
+}

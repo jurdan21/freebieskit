@@ -11,8 +11,12 @@ export function middleware(request: NextRequest) {
   response.headers.set('Referrer-Policy', 'origin-when-cross-origin');
   response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
   
-  // Performance headers
-  response.headers.set('Cache-Control', 'public, max-age=31536000, immutable');
+  // Performance headers - Perbaiki cache control
+  if (request.nextUrl.pathname.startsWith('/_next/static/')) {
+    response.headers.set('Cache-Control', 'public, max-age=31536000, immutable');
+  } else {
+    response.headers.set('Cache-Control', 'public, max-age=3600, must-revalidate');
+  }
   
   return response;
 }
