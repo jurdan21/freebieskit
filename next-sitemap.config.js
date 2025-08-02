@@ -1,4 +1,5 @@
-// Edit file ini untuk mengubah konfigurasi sitemap
+const { createClient } = require('@supabase/supabase-js')
+
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
   siteUrl: 'https://freebieskit.com',
@@ -6,123 +7,152 @@ module.exports = {
   changefreq: 'weekly',
   priority: 0.7,
   sitemapSize: 5000,
-  exclude: ['/api/*', '/admin/*', '/_next/*'],
-  generateIndexSitemap: true,
   robotsTxtOptions: {
     policies: [
       {
         userAgent: '*',
         allow: '/',
-        disallow: ['/api/', '/admin/', '/_next/'],
-      },
-      {
-        userAgent: 'Googlebot',
-        allow: '/',
-        disallow: ['/api/', '/admin/'],
       },
     ],
+    additionalSitemaps: [
+      'https://freebieskit.com/sitemap.xml',
+    ],
   },
+  
   additionalPaths: async (config) => {
-    console.log('🔍 Starting additionalPaths generation...')
-    
-    const { createClient } = require('@supabase/supabase-js')
+    // Validasi environment variables
+    if (!process.env.NEXT_PUBLIC_SUPABASE_URL || !process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY) {
+      console.warn('⚠️ Missing Supabase environment variables - skipping dynamic sitemap generation')
+      return []
+    }
     
     const supabase = createClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL,
       process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
     )
     
+    // Fungsi slugify yang robust
     function slugify(text) {
+      if (!text || typeof text !== 'string') return ''
       return text
+        .toString()
         .toLowerCase()
+        .trim()
         .replace(/[^a-z0-9 -]/g, '')
         .replace(/\s+/g, '-')
         .replace(/-+/g, '-')
-        .trim()
+        .replace(/^-+|-+$/g, '')
     }
-    
+
+    // Validasi data resource
+    function isValidResource(resource) {
+      return (
+        resource &&
+        resource.id &&
+        resource.title &&
+        typeof resource.title === 'string' &&
+        resource.title.trim().length > 0 &&
+        resource.categories &&
+        resource.categories.slug &&
+        typeof resource.categories.slug === 'string' &&
+        resource.created_at
+      )
+    }
+
     const additionalPaths = []
     
     try {
       console.log('📡 Fetching resources from Supabase...')
       
-      // Fetch ALL resources with images - hapus limit 50
       const { data: resources, error } = await supabase
         .from('resources')
         .select(`
           id, 
           title, 
-          image, 
-          created_at, 
-          overview,
+          created_at,
           categories!inner(
             slug
           )
         `)
-        .not('image', 'is', null)
+        .not('title', 'is', null)
+        .not('title', 'eq', '')
         .order('created_at', { ascending: false })
       
       if (error) {
-        console.error('❌ Supabase error:', error)
+        console.error('❌ Supabase error:', error.message)
         return []
       }
       
-      console.log(`✅ Found ${resources?.length || 0} resources`)
-      
-      if (resources && resources.length > 0) {
-        resources.forEach((resource) => {
-          const resourceSlug = `${resource.id}-${slugify(resource.title)}`
-          const categorySlug = resource.categories?.slug
-          const resourcePath = `/resource/${categorySlug}/${resourceSlug}`
-          
-          console.log(`📄 Added: ${resourcePath}`)
-           
-           // Only add if image URL exists and categorySlug is valid
-           if (resource.image && categorySlug && typeof resource.image === 'string' && resource.image.trim() !== '') {
-             const entry = {
-               loc: resourcePath,
-               changefreq: 'weekly',
-               priority: 0.9,
-               lastmod: new Date(resource.created_at).toISOString(),
-               images: [{
-                  loc: resource.image.trim(),
-                  title: resource.title || '',
-                  caption: resource.overview ? 
-                    `${resource.title} - ${resource.overview.substring(0, 150)}${resource.overview.length > 150 ? '...' : ''}` :
-                    `Free ${resource.title} for download`
-                }],
-             }
-             
-             additionalPaths.push(entry)
-           }
-        })
+      if (!resources || !Array.isArray(resources)) {
+        console.warn('⚠️ No valid resources data received')
+        return []
       }
-
-      // Tambahkan halaman kategori
-      const { data: categories } = await supabase
-        .from('categories')
-        .select('slug')
       
-      if (categories) {
-        categories.forEach((category) => {
-          additionalPaths.push({
-            loc: `/resource/${category.slug}`,
-            changefreq: 'weekly',
-            priority: 0.8,
-            lastmod: new Date().toISOString(),
+      console.log(`✅ Found ${resources.length} resources`)
+      
+      let validCount = 0
+      let invalidCount = 0
+      
+      resources.forEach((resource, index) => {
+        // Validasi resource
+        if (!isValidResource(resource)) {
+          console.warn(`⚠️ Invalid resource at index ${index}:`, {
+            id: resource?.id,
+            title: resource?.title,
+            categorySlug: resource?.categories?.slug
           })
-        })
-      }
+          invalidCount++
+          return
+        }
+        
+        const resourceSlug = `${resource.id}-${slugify(resource.title)}`
+        const categorySlug = resource.categories.slug
+        const resourcePath = `/resource/${categorySlug}/${resourceSlug}`
+        
+        // Validasi final path
+        if (!resourceSlug || resourceSlug === `${resource.id}-`) {
+          console.warn(`⚠️ Invalid slug generated for resource ${resource.id}: "${resource.title}"`)
+          invalidCount++
+          return
+        }
+        
+        // Buat entry sitemap yang bersih (tanpa image untuk menghindari masalah)
+        const entry = {
+          loc: resourcePath,
+          changefreq: 'weekly',
+          priority: 0.9,
+          lastmod: new Date(resource.created_at).toISOString(),
+        }
+        
+        additionalPaths.push(entry)
+        validCount++
+        
+        if ((index + 1) % 50 === 0) {
+          console.log(`📊 Processed ${index + 1}/${resources.length} resources...`)
+        }
+      })
+      
+      console.log(`\n📊 Final Summary:`)
+      console.log(`   ✅ Valid entries: ${validCount}`)
+      console.log(`   ❌ Invalid entries: ${invalidCount}`)
+      console.log(`   🎯 Total sitemap entries: ${additionalPaths.length}`)
       
     } catch (error) {
-      console.error('❌ Error fetching resources for sitemap:', error)
+      console.error('❌ Error fetching resources for sitemap:', error.message)
+      console.error('Stack trace:', error.stack)
+      return []
     }
     
-    console.log(`🎯 Total additional paths: ${additionalPaths.length}`)
     return additionalPaths
   },
+  
   transform: async (config, path) => {
-    // Custom priority untuk halaman penting
+    // Validasi path
+    if (!path || typeof path !== 'string') {
+      return null
+    }
+    
+    // Homepage - prioritas tertinggi
     if (path === '/') {
       return {
         loc: path,
@@ -131,17 +161,9 @@ module.exports = {
         lastmod: new Date().toISOString(),
       }
     }
-    // Halaman kategori resource
-    if (path.match(/\/resource\/[^/]+$/)) {
-      return {
-        loc: path,
-        changefreq: 'weekly',
-        priority: 0.8,
-        lastmod: new Date().toISOString(),
-      }
-    }
-    // Halaman detail resource
-    if (path.match(/\/resource\/[^/]+\/[^/]+$/)) {
+    
+    // Halaman detail resource - prioritas tinggi
+    if (path.match(/^\/resource\/[^/]+\/[^/]+$/)) {
       return {
         loc: path,
         changefreq: 'weekly',
@@ -149,7 +171,8 @@ module.exports = {
         lastmod: new Date().toISOString(),
       }
     }
-    // Halaman informasi penting
+    
+    // Halaman informasi - prioritas sedang
     if (path === '/information') {
       return {
         loc: path,
@@ -158,7 +181,8 @@ module.exports = {
         lastmod: new Date().toISOString(),
       }
     }
-    // Halaman legal
+    
+    // Halaman legal - prioritas rendah
     if (path === '/privacy' || path === '/terms') {
       return {
         loc: path,
@@ -167,11 +191,27 @@ module.exports = {
         lastmod: new Date().toISOString(),
       }
     }
+    
+    // Default untuk halaman lain
     return {
       loc: path,
-      changefreq: config.changefreq,
-      priority: config.priority,
+      changefreq: config.changefreq || 'weekly',
+      priority: config.priority || 0.7,
       lastmod: new Date().toISOString(),
     }
   },
+  
+  // Exclude paths yang tidak perlu
+  exclude: [
+    '/api/*',
+    '/_next/*',
+    '/admin/*',
+    '/dashboard/*',
+    '*.json',
+    '*.xml',
+  ],
+  
+  // Additional options untuk optimasi
+  generateIndexSitemap: true,
+  outDir: './public',
 }
