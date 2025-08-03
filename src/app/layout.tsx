@@ -3,7 +3,6 @@ import { Inter } from 'next/font/google';
 import "./globals.css";
 import Footer from "@/components/Footer";
 import Script from "next/script";
-// import Head from "next/head"; // Dihapus karena tidak digunakan
 
 const inter = Inter({ 
   subsets: ['latin'], 
@@ -19,9 +18,7 @@ export const metadata: Metadata = {
   creator: "FreebiesKit",
   publisher: "FreebiesKit",
   metadataBase: new URL("https://freebieskit.com"),
-  alternates: {
-    canonical: "https://freebieskit.com",
-  },
+  // HAPUS canonical dari layout.tsx - biarkan setiap halaman mengatur sendiri
   formatDetection: {
     email: false,
     address: false,
