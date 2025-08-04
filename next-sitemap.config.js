@@ -14,9 +14,10 @@ module.exports = {
         allow: '/',
       },
     ],
-    additionalSitemaps: [
-      'https://freebieskit.com/sitemap.xml',
-    ],
+    // HAPUS bagian additionalSitemaps yang menyebabkan circular reference
+    // additionalSitemaps: [
+    //   'https://freebieskit.com/sitemap.xml',
+    // ],
   },
   
   additionalPaths: async (config) => {
