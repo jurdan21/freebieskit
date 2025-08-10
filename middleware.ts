@@ -11,11 +11,18 @@ export function middleware(request: NextRequest) {
   response.headers.set('Referrer-Policy', 'origin-when-cross-origin');
   response.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
   
-  // Performance headers - Perbaiki cache control
+  // Performance headers - Optimized for better indexing
   if (request.nextUrl.pathname.startsWith('/_next/static/')) {
     response.headers.set('Cache-Control', 'public, max-age=31536000, immutable');
-  } else {
+  } else if (request.nextUrl.pathname === '/sitemap.xml' || request.nextUrl.pathname.startsWith('/sitemap-')) {
+    // Sitemap files should be cached but allow revalidation for search engines
     response.headers.set('Cache-Control', 'public, max-age=3600, must-revalidate');
+  } else if (request.nextUrl.pathname === '/robots.txt') {
+    // Robots.txt should be cached but allow revalidation
+    response.headers.set('Cache-Control', 'public, max-age=3600, must-revalidate');
+  } else {
+    // Regular pages - shorter cache for better indexing
+    response.headers.set('Cache-Control', 'public, max-age=1800, must-revalidate');
   }
   
   return response;
