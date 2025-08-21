@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL("https://freebieskit.com"),
   alternates: {
-    canonical: "https://freebieskit.com",
+    canonical: "https://freebieskit.com",  // PASTIKAN TIDAK ADA TRAILING SLASH
   },
   openGraph: {
     type: "website",

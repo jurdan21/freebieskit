@@ -202,12 +202,14 @@ module.exports = {
     }
   },
   
-  // Exclude paths yang tidak perlu
+  // Exclude paths yang tidak perlu - DIPERBAIKI
   exclude: [
     '/api/*',
     '/_next/*',
     '/admin/*',
     '/dashboard/*',
+    '/debug-seo',      // TAMBAHKAN INI
+    '/debug-seo/*',    // TAMBAHKAN INI
     '*.json',
     '*.xml',
   ],

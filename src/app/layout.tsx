@@ -189,6 +189,9 @@ export default function RootLayout({
             gtag('config', 'G-01BNDY8PPE');
           `}
         </Script>
+        // Di bagian head, tambahkan:
+        <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+        <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
       </head>
       <body className={`${inter.className} antialiased`}>
         {children}

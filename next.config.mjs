@@ -16,6 +16,22 @@ const nextConfig = {
     optimizePackageImports: ['lucide-react'],
   },
   trailingSlash: false,
+  
+  // TAMBAHKAN INI untuk mengatasi redirect issues
+  async redirects() {
+    return [
+      {
+        source: '/home',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/index',
+        destination: '/',
+        permanent: true,
+      },
+    ]
+  },
 };
 
 export default nextConfig;
