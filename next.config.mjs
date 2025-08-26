@@ -17,7 +17,7 @@ const nextConfig = {
   },
   trailingSlash: false,
   
-  // TAMBAHKAN INI untuk mengatasi redirect issues
+  // PERBAIKAN REDIRECT - LEBIH SPESIFIK
   async redirects() {
     return [
       {
@@ -29,6 +29,41 @@ const nextConfig = {
         source: '/index',
         destination: '/',
         permanent: true,
+      },
+      {
+        source: '/index.html',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/home.html',
+        destination: '/',
+        permanent: true,
+      },
+      // Tambahkan redirect untuk trailing slash
+      {
+        source: '/:path*/',
+        destination: '/:path*',
+        permanent: true,
+      },
+    ]
+  },
+  
+  // TAMBAHKAN HEADERS UNTUK MENCEGAH CACHE REDIRECT
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'X-Robots-Tag',
+            value: 'index, follow',
+          },
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
       },
     ]
   },

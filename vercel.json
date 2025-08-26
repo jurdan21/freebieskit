@@ -1,40 +1,26 @@
 {
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/home",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/index",
+      "destination": "/",
+      "permanent": true
+    }
+  ],
   "headers": [
-    {
-      "source": "/_next/static/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
-    },
-    {
-      "source": "/(sitemap\\.xml|sitemap-.*\\.xml|robots\\.txt)",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "index, follow"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=3600, must-revalidate"
-        }
-      ]
-    },
     {
       "source": "/(.*)",
       "headers": [
         {
           "key": "X-Robots-Tag",
           "value": "index, follow"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=1800, must-revalidate"
         }
       ]
     }
-  ],
-  "trailingSlash": false
+  ]
 }
